@@ -1,0 +1,3 @@
+rvm_auto_reload_flag=2
+
+rvm_with_gems="bundler"

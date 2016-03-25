@@ -1,0 +1,11 @@
+EXCLUDES="README.md LICENSE"
+DOTFILES_DIRS="$HOME/mac-dotfiles/dotfiles-local $HOME//mac-dotfiles/dotfiles"
+TAGS="git bash"
+
+#COPY_ALWAYS="ssh/id_* weechat/* netrc"
+#COPY_ALWAYS="*"
+#DOTFILES_DIRS="/home/mike/.dotfiles /usr/share/dotfiles"
+#EXCLUDES="irbrc *:*emacs* dotfiles:python*"
+#HOSTNAME="eggplant"
+#TAGS="freebsd development email git laptop gmail notmuch"
+#SYMLINK_DIRS="zprezto"
