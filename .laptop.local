@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# brew_cask_install 'atom'
+ brew_cask_install 'atom'
 # brew_cask_install 'cloud'
 # brew_cask_install 'firefox'
 # brew_cask_install 'iterm2'
