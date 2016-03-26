@@ -299,11 +299,15 @@ install_ruby_gem 'cocoapods'
 # More details here: https://robots.thoughtbot.com/brewfile-a-gemfile-but-for-homebrew
 # Don't have time to go through the reference, just follow the instructions below
 # To use the Brewfile, tap homebrew/bundle (one time)
-fancy_echo "Start Brewfile ..."
+fancy_echo "Start Brewing with Brewfiles ..."
+#Cleanup and get ready to install the latest and greatest
+brew update
+brew cleanup
+brew cask cleanup
 
 # use the Brewfile which has all required tools
-brew bundle check --file=Brewfile-common
-brew bundle check --file=Brewfile-app-dev
+brew bundle --file=Brewfile-common
+brew bundle --file=Brewfile-app-dev
 
 #if [ -f "$HOME/.laptop.local" ]; then
 #  . "$HOME/.laptop.local"
