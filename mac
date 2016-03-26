@@ -21,6 +21,12 @@ defaults write com.apple.dock autohide-delay -float 0; # remove Dock show delay
 defaults write com.apple.dock autohide-time-modifier -float 0; # remove Dock show delay
 defaults write com.apple.dock orientation right; # place Dock on the right side of screen
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true; # show all file extensions
+# Save screenshots to the desktop
+defaults write com.apple.screencapture location -string “$HOME/Desktop”
+# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+defaults write com.apple.screencapture type -string “png”
+# Display full POSIX path as Finder window title
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 killall Dock 2>/dev/null;
 killall Finder 2>/dev/null;
 
@@ -36,6 +42,8 @@ trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 # Die on failures
 set -e
 # set -x
+
+
 
 #----------------------------------------------
 # Functions for this shell
@@ -81,8 +89,11 @@ append_to_file() {
 #Init for this script
 # Install bash min version, zsh and make zsh as default shell for the system.
 init(){
-  # Ask for the administrator password upfront
-  sudo -v
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
   chmod 770 ~/.mkshrc
   chmod 770 ~/.profile
@@ -123,7 +134,13 @@ Usage
 "
 }
 install_ohmyzsh(){
-  curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+  if [ ! -d "$HOME/.oh-my-zsh/" ]; then
+    fancy_echo "Installing oh-my-zsh ... ..."
+    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+  else
+    fancy_echo "oh-my-zsh already installed. Skipping ..."
+  fi
+  
 }
 
 install_xcode() {
@@ -179,12 +196,14 @@ install_homebrew(){
 
     # shellcheck disable=SC2016
     append_to_file "$HOME/.zshrc" 'export PATH="/usr/local/bin:$PATH"'
+    brew tap homebrew/bundle
   else
     fancy_echo "Homebrew already installed. Skipping ..."
   fi
 }
 
 install_rrcup(){
+  #Reference: https://github.com/thoughtbot/dotfiles
   dotfiles_url="https://github.com/softmentor/laptop.git"
   #Git clone all the dot files
   if [ ! -d "$HOME/laptop/" ]; then
@@ -203,16 +222,21 @@ install_rrcup(){
     git pull
     popd
   fi
-  env RCRC=$HOME/laptop/dotfiles/rcrc
-  brew tap thoughtbot/formulae
-  brew install rcm
-  sudo rcup -d ~/laptop/dotfiles -v
+  if ! command -v rcup >/dev/null; then
+    fancy_echo "Installing RCM for dotfiles ..."
+    RCRC=$HOME/laptop/dotfiles/rcrc
+    brew tap thoughtbot/formulae
+    brew install rcm
+    sudo rcup -d ~/laptop/dotfiles -v
+  else
+    fancy_echo "RCM for dotfiles already installed. Skipping ..."
+  fi
 }
 
 install_rvm(){
   if ! command -v rbenv >/dev/null; then
     if ! command -v rvm >/dev/null; then
-      fancy_echo 'Installing RVM and the latest Ruby...'
+      fancy_echo "Installing RVM and the latest Ruby..."
       curl -L https://get.rvm.io | bash -s stable --ruby --auto-dotfiles --autolibs=enable
       . ~/.rvm/scripts/rvm
       #Fixing this issue for zsh
@@ -237,11 +261,11 @@ install_rvm(){
       # http://stackoverflow.com/questions/15708916/use-rvmrc-or-ruby-version-file-to-set-a-project-gemset-with-rvm
       rvm rvmrc trust ~/.rvmrc
     else
-      fancy_echo 'RVM already installed ...'
+      fancy_echo "RVM already installed ..."
       local_version="$(rvm -v 2> /dev/null | awk '$2 != ""{print $2}')"
       latest_version="$(curl -s https://raw.githubusercontent.com/wayneeseguin/rvm/stable/VERSION)"
       if [ "$local_version" != "$latest_version" ]; then
-        fancy_echo 'Upgrading RVM...'
+        fancy_echo "Upgrading RVM..."
         rvm get stable --auto-dotfiles --autolibs=enable --with-gems="bundler"
       else
         fancy_echo "Already using the latest version of RVM. Skipping..."
@@ -264,8 +288,13 @@ install_ruby_gem() {
     gem install "$@"
   fi
 }
-update_gem_system(){
-  gem update --system
+update_packages(){
+  # Update npm & packages
+  npm install npm -g
+  npm update -g
+  # Update Ruby & gems
+  gem update —system
+  gem update
 }
 #----------------------------------------------
 # End of Functions for this shell
@@ -287,7 +316,6 @@ install_xcode
 fancy_echo "Installing/Upgrading homebrew ..."
 fancy_echo "================================================================="
 install_homebrew
-brew tap homebrew/bundle
 fancy_echo "Installing/Upgrading rcup ..."
 fancy_echo "================================================================="
 install_rrcup
@@ -298,7 +326,7 @@ fancy_echo "Installing/Upgrading ruby_gem ..."
 fancy_echo "================================================================="
 install_ruby_gem 'bundler'
 install_ruby_gem 'cocoapods'
-#update_gem_system
+#update_packages
 
 #########################################################
 #  Start installing all applications using homebrew
@@ -320,6 +348,9 @@ brew bundle --file=Brewfile-common
 fancy_echo "Installing/Upgrading Brewfile-app-dev ..."
 fancy_echo "================================================================="
 brew bundle --file=Brewfile-app-dev
+
+# Update App Store apps
+#sudo softwareupdate -i -a
 
 #if [ -f "$HOME/.laptop.local" ]; then
 #  . "$HOME/.laptop.local"
