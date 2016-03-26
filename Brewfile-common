@@ -46,6 +46,9 @@ brew 'findutils'
 # Install Bash latest
 brew 'bash'
 
+#Install RCM latest
+brew 'rcm'
+
 #==============================================================================
 # Common developer applications
 #==============================================================================

@@ -123,7 +123,13 @@ Usage
 "
 }
 install_ohmyzsh(){
-  curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+  if [ ! -d "$HOME/.oh-my-zsh/" ]; then
+    fancy_echo "Installing oh-my-zsh ... ..."
+    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+  else
+    fancy_echo "oh-my-zsh already installed. Skipping ..."
+  fi
+  
 }
 
 install_xcode() {
@@ -179,12 +185,14 @@ install_homebrew(){
 
     # shellcheck disable=SC2016
     append_to_file "$HOME/.zshrc" 'export PATH="/usr/local/bin:$PATH"'
+    brew tap homebrew/bundle
   else
     fancy_echo "Homebrew already installed. Skipping ..."
   fi
 }
 
 install_rrcup(){
+  #Reference: https://github.com/thoughtbot/dotfiles
   dotfiles_url="https://github.com/softmentor/laptop.git"
   #Git clone all the dot files
   if [ ! -d "$HOME/laptop/" ]; then
@@ -203,16 +211,21 @@ install_rrcup(){
     git pull
     popd
   fi
-  env RCRC=$HOME/laptop/dotfiles/rcrc
-  brew tap thoughtbot/formulae
-  brew install rcm
-  sudo rcup -d ~/laptop/dotfiles -v
+  if ! command -v rcup >/dev/null; then
+    fancy_echo "Installing RCM for dotfiles ..."
+    RCRC=$HOME/laptop/dotfiles/rcrc
+    brew tap thoughtbot/formulae
+    brew install rcm
+    sudo rcup -d ~/laptop/dotfiles -v
+  else
+    fancy_echo "RCM for dotfiles already installed. Skipping ..."
+  fi
 }
 
 install_rvm(){
   if ! command -v rbenv >/dev/null; then
     if ! command -v rvm >/dev/null; then
-      fancy_echo 'Installing RVM and the latest Ruby...'
+      fancy_echo "Installing RVM and the latest Ruby..."
       curl -L https://get.rvm.io | bash -s stable --ruby --auto-dotfiles --autolibs=enable
       . ~/.rvm/scripts/rvm
       #Fixing this issue for zsh
@@ -237,11 +250,11 @@ install_rvm(){
       # http://stackoverflow.com/questions/15708916/use-rvmrc-or-ruby-version-file-to-set-a-project-gemset-with-rvm
       rvm rvmrc trust ~/.rvmrc
     else
-      fancy_echo 'RVM already installed ...'
+      fancy_echo "RVM already installed ..."
       local_version="$(rvm -v 2> /dev/null | awk '$2 != ""{print $2}')"
       latest_version="$(curl -s https://raw.githubusercontent.com/wayneeseguin/rvm/stable/VERSION)"
       if [ "$local_version" != "$latest_version" ]; then
-        fancy_echo 'Upgrading RVM...'
+        fancy_echo "Upgrading RVM..."
         rvm get stable --auto-dotfiles --autolibs=enable --with-gems="bundler"
       else
         fancy_echo "Already using the latest version of RVM. Skipping..."
@@ -287,7 +300,6 @@ install_xcode
 fancy_echo "Installing/Upgrading homebrew ..."
 fancy_echo "================================================================="
 install_homebrew
-brew tap homebrew/bundle
 fancy_echo "Installing/Upgrading rcup ..."
 fancy_echo "================================================================="
 install_rrcup
