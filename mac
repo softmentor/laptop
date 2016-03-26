@@ -105,7 +105,7 @@ init(){
     */zsh) : ;;
     *)
       fancy_echo "Changing your shell to zsh ..."
-        chsh -s "$(which zsh)"
+        chsh -s /bin/zsh
       ;;
   esac
 }
@@ -122,6 +122,10 @@ Usage
 
 install_xcode() {
 
+  # Install X code
+  xcodeCmd="xcode-select -p"
+  # Get and install Xcode CLI tools
+  OSX_VERS=$(sw_vers -productVersion | awk -F "." '{print $2}')
   #Reference: 
   #https://github.com/timsutton/osx-vm-templates/blob/ce8df8a7468faa7c5312444ece1b977c1b2f77a4/scripts/xcode-cli-tools.sh
   #https://github.com/chcokr/osx-init/blob/master/install.sh
@@ -175,22 +179,28 @@ install_homebrew(){
 }
 
 install_rrcup(){
+  dotfiles_url="https://github.com/softmentor/laptop.git"
   #Git clone all the dot files
-  if [ ! -d "$HOME/mac-dotfiles/" ]; then
-    git clone $dotfiles_url ~/mac-dotfiles
-    fancy_echo "Moving to mac-dotfiles ..."
-    cd ~/mac-dotfiles
-  else
-    fancy_echo "Moving to mac-dotfiles ..."
-    cd ~/mac-dotfiles
-    git fetch
-    git checkout feature/v1 
+  if [ ! -d "$HOME/laptop/" ]; then
+    fancy_echo "Cloning laptop"
+    git clone $dotfiles_url ~/laptop
+    pushd ~/laptop 
+    fancy_echo "Moving to laptop ..."
+    git checkout v1 
     git pull
+    popd
+  else
+    fancy_echo "Moving to laptop ..."
+    pushd ~/laptop
+    git fetch
+    git checkout v1 
+    git pull
+    popd
   fi
-  env RCRC=$HOME/mac-dotfiles/dotfiles/rcrc
+  env RCRC=$HOME/laptop/dotfiles/rcrc
   brew tap thoughtbot/formulae
   brew install rcm
-  rcup -d ~/mac-dotfiles/dotfiles -v
+  sudo rcup -d ~/laptop/dotfiles -v
 }
 
 install_rvm(){
@@ -202,7 +212,7 @@ install_rvm(){
       #Fixing this issue for zsh
       #http://stackoverflow.com/questions/27784961/received-warning-message-path-set-to-rvm-after-updating-ruby-version-using-rvm
       # https://github.com/rvm/rvm/issues/3212
-      append_to_file "$HOME/.zshrc" 'export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting'
+      #append_to_file "$HOME/.zshrc" 'export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting'
       # Verify RVM installation by running, which returns 'rvm is a function'
       type rvm | head -1
       fancy_echo "Verified rvm is a function ....."
@@ -210,12 +220,18 @@ install_rvm(){
       rvm list
       #rvm get stable
       rvm install 1.9.3-p194
-      #rvm install 2.2.2
+      rvm install 2.2.2
       # for octopress
       #rvm use 1.9.3-p194
-      rvm use 2.2.2
+      rvm --ruby-version use ruby-head
+      rvm --ruby-version use 2.2.2
       rvm default 2.2.2
+      # To prevent warnings, trust the rvmrc file
+      # Refer: https://rvm.io/workflow/projects
+      # http://stackoverflow.com/questions/15708916/use-rvmrc-or-ruby-version-file-to-set-a-project-gemset-with-rvm
+      rvm rvmrc trust ~/.rvmrc
     else
+      fancy_echo 'RVM already installed ...'
       local_version="$(rvm -v 2> /dev/null | awk '$2 != ""{print $2}')"
       latest_version="$(curl -s https://raw.githubusercontent.com/wayneeseguin/rvm/stable/VERSION)"
       if [ "$local_version" != "$latest_version" ]; then
@@ -255,12 +271,23 @@ update_gem_system(){
 
 # Initialize, configure and change the shell to zsh.
 fancy_echo "Initialize your shell to zsh ..."
+fancy_echo "================================================================="
 init
+fancy_echo "Installing/Upgrading XCode ..."
+fancy_echo "================================================================="
 install_xcode
+fancy_echo "Installing/Upgrading homebrew ..."
+fancy_echo "================================================================="
 install_homebrew
 brew tap homebrew/bundle
+fancy_echo "Installing/Upgrading rcup ..."
+fancy_echo "================================================================="
 install_rrcup
+fancy_echo "Installing/Upgrading rvm ..."
+fancy_echo "================================================================="
 install_rvm
+fancy_echo "Installing/Upgrading ruby_gem ..."
+fancy_echo "================================================================="
 install_ruby_gem 'bundler'
 install_ruby_gem 'cocoapods'
 #update_gem_system
@@ -275,8 +302,8 @@ install_ruby_gem 'cocoapods'
 fancy_echo "Start Brewfile ..."
 
 # use the Brewfile which has all required tools
-brew bundle --file=Brewfile-common
-brew bundle --file=Brewfile-app-dev
+brew bundle check --file=Brewfile-common
+brew bundle check --file=Brewfile-app-dev
 
 #if [ -f "$HOME/.laptop.local" ]; then
 #  . "$HOME/.laptop.local"

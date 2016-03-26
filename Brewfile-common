@@ -29,17 +29,17 @@ tap 'youtux/livecheck'
 brew 'zsh'
 
 #brew homebrew/dupes/grep
-#brew make
-#brew zlib
+#brew 'make'
+#brew 'zlib'
 
 # Install GNU core utilities (those that come with OS X are outdated)
-brew coreutils
+brew 'coreutils'
 
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-brew findutils
+brew 'findutils'
 
 # Install Bash latest
-brew bash
+brew 'bash'
 
 #==============================================================================
 # Common developer applications
@@ -51,7 +51,7 @@ brew 'git-extras'
 #brew 'legit'
 
 #git gui clients
-#cask github
+#cask 'github'
 
 #git extras
 #cask 'gitx-l'
@@ -78,10 +78,10 @@ brew 'imagemagick'
 brew 'homebrew/dupes/rsync'
 
 # Network tools
-#brew dns2tcp
-#brew knock
-#brew rename
-#brew webkit2png
+#brew 'dns2tcp'
+#brew 'knock'
+#brew 'rename'
+#brew 'webkit2png'
 
 # terminal
 cask 'iterm2'
@@ -89,7 +89,7 @@ cask 'iterm2'
 # editor
 brew 'vim', args: ['override-system-vi']
 #brew 'macvim'
-#cask sublime-text3
+cask 'sublime-text3'
 cask 'atom'
 
 #languages
@@ -102,4 +102,4 @@ brew 'scala'
 # IDEs
 cask 'intellij-idea'
 cask 'eclipse-jee'
-#cask android-studio
+#cask 'ßandroid-studio'

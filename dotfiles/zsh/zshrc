@@ -6,3 +6,5 @@ precmd () { PS1="%{%F{166}%}[%~] %{%F{65}%}$(rvm-prompt) %{%f%}$ " }
 # display directories and files in different colors when running ls
 export CLICOLOR=1
 export LSCOLORS=exfxcxdxbxegedabagacad
+
+export PATH="$PATH:$HOME/.rvm/bin
