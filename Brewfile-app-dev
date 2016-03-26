@@ -38,7 +38,8 @@ brew 'wrk'
 #Virtual env - docker
 cask 'virtualbox'
 cask 'vagrant'
-cask 'vmware-fusion'
+cask 'vagrant-manager'
+#cask 'vmware-fusion'
 # docker
 #brew 'boot2docker'
 cask 'dockertoolbox'
