@@ -250,6 +250,7 @@ install_rvm(){
       rvm list
       #rvm get stable
       rvm install 1.9.3-p194
+      rvm install 2.0.0
       rvm install 2.2.2
       # for octopress
       #rvm use 1.9.3-p194

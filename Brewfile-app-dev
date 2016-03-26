@@ -25,7 +25,7 @@ brew 'redis'
 brew 'httpd24'
 
 ## apache thrift
-brew 'thrift'
+brew 'thrift', args: ['--without-haskell --without-php --without-erlang']
 
 #Mobile dev
 #cask genymotion

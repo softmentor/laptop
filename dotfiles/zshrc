@@ -49,7 +49,7 @@ HIST_STAMPS="dd/mm/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler osx rake ruby archlinux atom brew common-aliases docker encode64 gradle mvn jsontools npm node redis-cli sbt scala sublime web-search systemctl golang)
+plugins=(config bundler osx rake ruby archlinux atom brew common-aliases docker encode64 gradle mvn jsontools npm node redis-cli sbt scala sublime web-search systemctl golang)
 
 # User configuration
 export PATH="$HOME/.bin:$PATH"

@@ -12,7 +12,6 @@
 	token = xxxxxxxxxxxxxx
 [core]
 	editor = subl -w
-	excludesfile = ~/.gitignore
 [color]
 	ui = true
 [difftool "sourcetree"]
