@@ -24,6 +24,11 @@ tap 'thoughtbot/formulae'
 tap 'youtux/livecheck'
 
 #==============================================================================
+# Pre-requisites
+#==============================================================================
+brew 'caskroom/cask/brew-cask'
+
+#==============================================================================
 # shell
 #==============================================================================
 brew 'zsh'
@@ -70,12 +75,15 @@ brew 'the_silver_searcher'
 brew 'fasd'
 brew 'wget'
 brew 'curl'
-brew 'ngrok'
+cask 'ngrok'
 brew 'awscli'
 brew 'terminal-notifier'
 brew 'htop-osx'
 brew 'imagemagick'
 brew 'homebrew/dupes/rsync'
+brew 'boost'
+brew 'pkg-config'
+brew 'freetype'
 
 # Network tools
 #brew 'dns2tcp'
@@ -98,8 +106,9 @@ cask 'java'
 brew 'python'
 brew 'go'
 brew 'scala'
+#brew 'qt'
 
 # IDEs
 cask 'intellij-idea'
 cask 'eclipse-jee'
-#cask 'ßandroid-studio'
+#cask 'android-studio'

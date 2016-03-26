@@ -7,6 +7,7 @@
 # build tools
 brew 'maven'
 brew 'gradle'
+brew 'sbt'
 
 #documentation
 cask 'gitbook'
@@ -37,13 +38,14 @@ brew 'wrk'
 #Virtual env - docker
 cask 'virtualbox'
 cask 'vagrant'
-cask 'vmware-fusion'
+cask 'vagrant-manager'
+#cask 'vmware-fusion'
 # docker
 #brew 'boot2docker'
-cask 'dockertoolbox'
-cask 'docker-machine'
-cask 'docker-compose'
+brew 'docker-machine'
+brew 'docker-compose'
 cask 'kitematic'
+cask 'dockertoolbox'
 
 # Lets fix up a right coding font
 # http://www.levien.com/type/myfonts/inconsolata.html
@@ -65,7 +67,7 @@ cask 'firefox'
 #communication
 cask 'skype'
 cask 'slack'
-cask google-hangouts
+cask 'google-hangouts'
 
 #music
 cask 'spotify'
