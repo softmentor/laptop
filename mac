@@ -21,6 +21,12 @@ defaults write com.apple.dock autohide-delay -float 0; # remove Dock show delay
 defaults write com.apple.dock autohide-time-modifier -float 0; # remove Dock show delay
 defaults write com.apple.dock orientation right; # place Dock on the right side of screen
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true; # show all file extensions
+# Save screenshots to the desktop
+defaults write com.apple.screencapture location -string “$HOME/Desktop”
+# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+defaults write com.apple.screencapture type -string “png”
+# Display full POSIX path as Finder window title
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 killall Dock 2>/dev/null;
 killall Finder 2>/dev/null;
 
@@ -36,6 +42,8 @@ trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 # Die on failures
 set -e
 # set -x
+
+
 
 #----------------------------------------------
 # Functions for this shell
@@ -81,8 +89,11 @@ append_to_file() {
 #Init for this script
 # Install bash min version, zsh and make zsh as default shell for the system.
 init(){
-  # Ask for the administrator password upfront
-  sudo -v
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
   chmod 770 ~/.mkshrc
   chmod 770 ~/.profile
@@ -277,8 +288,13 @@ install_ruby_gem() {
     gem install "$@"
   fi
 }
-update_gem_system(){
-  gem update --system
+update_packages(){
+  # Update npm & packages
+  npm install npm -g
+  npm update -g
+  # Update Ruby & gems
+  gem update —system
+  gem update
 }
 #----------------------------------------------
 # End of Functions for this shell
@@ -310,7 +326,7 @@ fancy_echo "Installing/Upgrading ruby_gem ..."
 fancy_echo "================================================================="
 install_ruby_gem 'bundler'
 install_ruby_gem 'cocoapods'
-#update_gem_system
+#update_packages
 
 #########################################################
 #  Start installing all applications using homebrew
@@ -332,6 +348,9 @@ brew bundle --file=Brewfile-common
 fancy_echo "Installing/Upgrading Brewfile-app-dev ..."
 fancy_echo "================================================================="
 brew bundle --file=Brewfile-app-dev
+
+# Update App Store apps
+#sudo softwareupdate -i -a
 
 #if [ -f "$HOME/.laptop.local" ]; then
 #  . "$HOME/.laptop.local"
