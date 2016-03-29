@@ -211,14 +211,13 @@ install_rrcup(){
     git clone $dotfiles_url ~/laptop
     pushd ~/laptop 
     fancy_echo "Moving to laptop ..."
-    git checkout v1 
+    git checkout master 
     git pull
     popd
   else
     fancy_echo "Moving to laptop ..."
     pushd ~/laptop
     git fetch
-    git checkout v1 
     git pull
     popd
   fi
