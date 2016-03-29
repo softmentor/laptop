@@ -254,8 +254,9 @@ install_rvm(){
       rvm install 2.2.2
       # for octopress
       #rvm use 1.9.3-p194
-      rvm --ruby-version use ruby-head
-      rvm --ruby-version use 2.2.2
+      rvm use 2.0.0
+      rvm use ruby-head
+      rvm use 2.2.2
       rvm default 2.2.2
       # To prevent warnings, trust the rvmrc file
       # Refer: https://rvm.io/workflow/projects
