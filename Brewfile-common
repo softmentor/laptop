@@ -1,0 +1,118 @@
+# Brewfile-common
+# All Basic necessary tools for mac developer
+# Uncomment ones you might require or interested.
+
+#==============================================================================
+# Tap all repos
+#==============================================================================
+tap 'caskroom/cask'
+tap 'caskroom/fonts'
+tap 'caskroom/versions'
+tap 'homebrew/apache'
+tap 'homebrew/binary'
+tap 'homebrew/bundle'
+tap 'homebrew/dupes'
+tap 'homebrew/fuse'
+tap 'homebrew/python'
+tap 'homebrew/science'
+tap 'homebrew/services'
+tap 'homebrew/versions'
+tap 'josegonzalez/php'
+tap 'rcmdnk/file'
+tap 'telemachus/anytap'
+tap 'thoughtbot/formulae'
+tap 'youtux/livecheck'
+
+#==============================================================================
+# Pre-requisites
+#==============================================================================
+brew 'caskroom/cask/brew-cask'
+
+#==============================================================================
+# shell
+#==============================================================================
+brew 'zsh'
+
+#brew homebrew/dupes/grep
+#brew 'make'
+#brew 'zlib'
+
+# Install GNU core utilities (those that come with OS X are outdated)
+brew 'coreutils'
+
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+brew 'findutils'
+
+# Install Bash latest
+brew 'bash'
+
+#Install RCM latest
+brew 'rcm'
+
+#==============================================================================
+# Common developer applications
+#==============================================================================
+
+# git
+brew 'git'
+brew 'git-extras'
+#brew 'legit'
+
+#git gui clients
+#cask 'github'
+
+#git extras
+#cask 'gitx-l'
+cask 'sourcetree'
+
+# ruby version manager
+#brew 'rbenv'
+#brew 'ruby-build'
+
+# replace default openssl
+brew 'openssl'
+
+# utils
+brew 'ack'
+brew 'the_silver_searcher'
+brew 'fasd'
+brew 'wget'
+brew 'curl'
+cask 'ngrok'
+brew 'awscli'
+brew 'terminal-notifier'
+brew 'htop-osx'
+brew 'imagemagick'
+brew 'homebrew/dupes/rsync'
+brew 'boost'
+brew 'pkg-config'
+brew 'freetype'
+
+# Network tools
+#brew 'dns2tcp'
+#brew 'knock'
+#brew 'rename'
+#brew 'webkit2png'
+
+# terminal
+cask 'iterm2'
+brew 'tmux'
+
+# editor
+brew 'vim', args: ['override-system-vi']
+#brew 'macvim'
+cask 'sublime-text3'
+cask 'atom'
+
+#languages
+cask 'java'
+#cask 'java7'
+brew 'python'
+brew 'go'
+brew 'scala'
+#brew 'qt'
+
+# IDEs
+cask 'intellij-idea'
+cask 'eclipse-jee'
+#cask 'android-studio'

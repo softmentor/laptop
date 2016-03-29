@@ -1,0 +1,101 @@
+# Brewfile-app-dev
+# Uncomment ones you might require or interested.
+
+#==============================================================================
+# Application Dev Tools
+#==============================================================================
+# build tools
+brew 'maven'
+brew 'gradle'
+brew 'sbt'
+
+#documentation
+cask 'gitbook'
+
+# web dev
+brew 'node'
+
+# databases
+brew 'postgresql', args: ['no-python']
+brew 'redis'
+#brew 'rabbitmq'
+#brew 'memcached'
+
+## homebrew/apache
+brew 'httpd24'
+
+## apache thrift
+brew 'thrift', args: ['--without-haskell --without-php --without-erlang']
+
+#Mobile dev
+#cask genymotion
+cask 'charles'
+
+#performance testing
+brew 'ab'
+brew 'wrk'
+
+#Virtual env - docker
+cask 'virtualbox'
+cask 'vagrant'
+cask 'vagrant-manager'
+#cask 'vmware-fusion'
+# docker
+#brew 'boot2docker'
+brew 'docker-machine'
+brew 'docker-compose'
+cask 'kitematic'
+cask 'dockertoolbox'
+
+# Lets fix up a right coding font
+# http://www.levien.com/type/myfonts/inconsolata.html
+# development font
+cask 'font-inconsolata'
+cask 'font-inconsolata-for-powerline'
+
+#==============================================================================
+# Optional Applications - typically required for developers.
+#==============================================================================
+
+# browsers
+cask 'google-chrome'
+cask 'opera'
+cask 'firefox'
+#cask 'lastpass'
+
+# apps
+#communication
+cask 'skype'
+cask 'slack'
+cask 'google-hangouts'
+
+#books
+cask 'kindle'
+
+#music
+cask 'spotify'
+
+# drives
+cask 'dropbox'
+cask 'google-drive'
+#cask 'skydrive' #onedrive
+
+
+#==============================================================================
+# Extras
+#==============================================================================
+
+#cask ganttproject
+
+#cask 'rdm'
+#cask 'vlc'
+#cask 'adium'
+cask 'calibre'
+#cask 'crashplan'
+#cask 'flux'
+#cask 'skitch'
+#cask 'tinyumbrella'
+#cask 'transmission-remote-gui'
+#cask 'truecrypt71a'
+#cask 'cyberduck'
+
