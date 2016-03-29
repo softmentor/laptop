@@ -63,7 +63,7 @@ brew 'git-extras'
 
 #git extras
 #cask 'gitx-l'
-#cask 'sourcetree'
+cask 'sourcetree'
 
 # ruby version manager
 #brew 'rbenv'
