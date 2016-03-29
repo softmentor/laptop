@@ -26,6 +26,8 @@
 [merge]
 	conflictStyle = diff3
 	tool = sourcetree
+[branch "master"]
+    mergeoptions = --no-ff
 [push]
 	default = simple
 [web]
