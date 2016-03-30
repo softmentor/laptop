@@ -47,11 +47,7 @@ brew 'docker-compose'
 cask 'kitematic'
 cask 'dockertoolbox'
 
-# Lets fix up a right coding font
-# http://www.levien.com/type/myfonts/inconsolata.html
-# development font
-cask 'font-inconsolata'
-cask 'font-inconsolata-for-powerline'
+
 
 #==============================================================================
 # Optional Applications - typically required for developers.

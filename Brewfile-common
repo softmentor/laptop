@@ -72,6 +72,21 @@ cask 'sourcetree'
 # replace default openssl
 brew 'openssl'
 
+# Lets fix up a right coding font
+# http://www.levien.com/type/myfonts/inconsolata.html
+# development font
+cask 'font-inconsolata'
+cask 'font-inconsolata-lgc'
+cask 'font-inconsolata-for-powerline'
+cask 'font-inconsolata-dz-for-powerline'
+cask 'font-inconsolata-g-for-powerline'
+
+cask 'font-meslo-lg'
+cask 'font-meslo-lg-for-powerline'
+cask 'font-consolas-for-powerline'
+cask 'font-anonymous-pro-for-powerline'
+
+
 # utils
 brew 'ack'
 brew 'the_silver_searcher'
@@ -87,6 +102,7 @@ brew 'homebrew/dupes/rsync'
 brew 'boost'
 brew 'pkg-config'
 brew 'freetype'
+brew 'gnupg'
 
 # Network tools
 #brew 'dns2tcp'
@@ -99,8 +115,8 @@ cask 'iterm2'
 brew 'tmux'
 
 # editor
-brew 'vim', args: ['override-system-vi']
-#brew 'macvim'
+brew 'vim', args: ['override-system-vi --with-python --with-ruby --with-perl']
+#brew 'macvim', args: ['--env-std --override-system-vim --with-python-config-dir=/usr/local/lib/python2.7/config']
 cask 'sublime-text3'
 cask 'atom'
 
