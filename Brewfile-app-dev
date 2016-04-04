@@ -13,7 +13,7 @@ brew 'sbt'
 cask 'gitbook'
 
 # web dev
-brew 'node'
+#brew 'node'
 
 # databases
 brew 'postgresql', args: ['no-python']
@@ -67,6 +67,9 @@ cask 'google-hangouts'
 
 #books
 cask 'kindle'
+
+#notes
+cask 'evernote'
 
 #music
 cask 'spotify'

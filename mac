@@ -95,9 +95,15 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.osx` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-  chmod 770 ~/.mkshrc
-  chmod 770 ~/.profile
-  chmod 770 ~/.bashrc ~/.bash_profile ~/.zshrc ~/.zlogin 
+  if [ ! -f "$HOME/.mkshrc" ]; then
+    sudo chmod 770 ~/.mkshrc
+  fi
+  if [ ! -f "$HOME/.profile" ]; then
+    sudo chmod 770 ~/.profile
+  fi
+  if [ ! -f "$HOME/.zshrc" ]; then
+    sudo chmod 770 ~/.bashrc ~/.bash_profile ~/.zshrc ~/.zlogin
+  fi
   BASH_MIN_VERSION="3.2.25"
     if
       [[ -n "${BASH_VERSION:-}" &&
@@ -196,6 +202,8 @@ install_homebrew(){
 
     # shellcheck disable=SC2016
     append_to_file "$HOME/.zshrc" 'export PATH="/usr/local/bin:$PATH"'
+    sudo mkdir -p /opt/homebrew-cask
+    sudo chmod -R 770 /opt/homebrew-cask
     brew tap homebrew/bundle
   else
     fancy_echo "Homebrew already installed. Skipping ..."
@@ -275,6 +283,44 @@ install_rvm(){
   fi
 }
 
+install_nvm(){
+  if command -v node >/dev/null; then
+    fancy_echo "Node is already installed. Attempting to brew uninstall node ..."
+    # Node is present so uninstall that first before installing nvm
+    brew uninstall --force node
+  fi
+  #if nvm directory already present, remove it.
+  if ! command -v nvm >/dev/null; then
+    if [ ! -d "$HOME/.nvm/" ]; then
+      pushd "$HOME/.nvm/"
+      if [! git rev-parse --is-inside-work-tree]; then
+        fancy_echo "NVM installed folder is not git controlled. Deleting ..."
+        # This is a not a git directory
+        rm -rf "$HOME/.nvm/"
+        # we will not install nvm via brew, as it has many issues.
+        # use the instructions as mention by nvm dev.
+        fancy_echo "NVM not installed. Installing ..."
+        git clone https://github.com/creationix/nvm.git ~/.nvm 
+        git checkout -b `git describe --abbrev=0 --tags`
+      fi
+      popd
+    fi
+    fancy_echo "NVM already installed. Configuring node version ..."
+    source ~/.nvm/nvm.sh
+    nvm install node
+    nvm alias default node
+  else
+    fancy_echo "Already using the latest version of NVM. Skipping, just updating..."
+    # NVM already installed just update.
+    pushd ~/.nvm
+    git pull
+    popd
+    #update npm to latest
+    fancy_echo "Updating the latest version of npm package manager ..."
+    npm install -g npm@latest
+  fi
+
+}
 
 #Install or update ruby gems from a list of items.
 install_ruby_gem() {
@@ -287,6 +333,9 @@ install_ruby_gem() {
   else
     fancy_echo "Installing %s ..." "$1"
     gem install "$@"
+    if [ ! -d "$HOME/.gem/" ]; then
+      sudo chmod -R 770 $HOME/.gem/
+    fi
   fi
 }
 update_packages(){
@@ -327,6 +376,10 @@ fancy_echo "Installing/Upgrading ruby_gem ..."
 fancy_echo "================================================================="
 install_ruby_gem 'bundler'
 install_ruby_gem 'cocoapods'
+fancy_echo "Installing/Upgrading nvm ..."
+fancy_echo "================================================================="
+install_nvm
+
 #update_packages
 
 #########################################################

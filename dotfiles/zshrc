@@ -65,6 +65,7 @@ export PATH="/usr/local/share/python/:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -107,3 +108,20 @@ source $ZSH/oh-my-zsh.sh
 export CC=clang
 GOPATH=/usr/local/bin/go
 GOROOT=/usr/local/bin
+
+# nvm, nodejs version management
+#source ~/.nvm/nvm.sh
+#source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+# to call nvm use automatically whenever you enter a directory that contains an .nvmrc file 
+# with a string telling nvm which node to use
+autoload -U add-zsh-hook
+load-nvmrc() {
+  if [[ -f .nvmrc && -r .nvmrc ]]; then
+    nvm use
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+
