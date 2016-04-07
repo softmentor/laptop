@@ -120,6 +120,9 @@ brew 'vim', args: ['override-system-vi --with-python --with-ruby --with-perl']
 cask 'sublime-text3'
 cask 'atom'
 
+#editor config
+#brew 'editorconfig'
+
 #languages
 cask 'java'
 #cask 'java7'
@@ -132,3 +135,4 @@ brew 'scala'
 cask 'intellij-idea'
 cask 'eclipse-jee'
 #cask 'android-studio'
+#cask 'webstorm'

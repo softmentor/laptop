@@ -170,6 +170,7 @@ install_xcode() {
       PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n')
       # install it
       softwareupdate -i "$PROD" -v
+      xcodebuild -license
     # on 10.7/10.8, we instead download from public download URLs, which can be found in
     # the dvtdownloadableindex:
     # https://devimages.apple.com.edgekey.net/downloads/xcode/simulators/index-3905972D-B609-49CE-8D06-51ADC78E07BC.dvtdownloadableindex
@@ -191,6 +192,16 @@ install_xcode() {
     echo "=== XCode CommandLineTools Installed at... `$xcodeCmd`"
   fi
 
+}
+
+install_alcatraz(){
+  if [ ! -f ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin ]; then
+    fancy_echo "Installing Alcatraz, package manager for Xcode ..."
+    # http://alcatraz.io/
+    curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh
+  else
+    fancy_echo "Alcatraz, package manager for Xcode already install. Skipping ..."
+  fi
 }
 
 install_homebrew(){
@@ -329,6 +340,7 @@ install_npm_global_pkg(){
   # application dev
   npm install -g underscore
   npm install -g express
+  npm install -g http-server
 
   # testing
   npm install -g protractor
@@ -340,6 +352,7 @@ install_npm_global_pkg(){
   #typescript
   npm install -g typescript
   npm install -g typings
+  npm install -g tsd
 }
 
 #Install or update ruby gems from a list of items.
@@ -383,6 +396,9 @@ install_ohmyzsh
 fancy_echo "Installing/Upgrading XCode ..."
 fancy_echo "================================================================="
 install_xcode
+fancy_echo "Installing/Upgrading Alcatraz ..."
+fancy_echo "================================================================="
+#install_alcatraz
 fancy_echo "Installing/Upgrading homebrew ..."
 fancy_echo "================================================================="
 install_homebrew
