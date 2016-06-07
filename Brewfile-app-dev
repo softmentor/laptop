@@ -42,9 +42,10 @@ cask 'vagrant-manager'
 #cask 'vmware-fusion'
 # docker
 #brew 'boot2docker'
-brew 'docker-machine'
-brew 'docker-compose'
-cask 'kitematic'
+#brew 'docker-machine'
+#brew 'docker-compose'
+#cask 'kitematic'
+# only dockertoolbox is required as it installs all that is required for docker.
 cask 'dockertoolbox'
 
 
@@ -100,3 +101,4 @@ cask 'calibre'
 #cask 'truecrypt71a'
 #cask 'cyberduck'
 
+cask 'flux'

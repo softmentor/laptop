@@ -119,6 +119,7 @@ brew 'vim', args: ['override-system-vi --with-python --with-ruby --with-perl']
 #brew 'macvim', args: ['--env-std --override-system-vim --with-python-config-dir=/usr/local/lib/python2.7/config']
 cask 'sublime-text3'
 cask 'atom'
+cask 'visual-studio-code'
 
 #editor config
 #brew 'editorconfig'
@@ -132,7 +133,10 @@ brew 'scala'
 #brew 'qt'
 
 # IDEs
-cask 'intellij-idea'
+#Community Free Edition
+cask 'intellij-idea-ce'
+#Ultimate Edition
+#cask 'intellij-idea'
 cask 'eclipse-jee'
 #cask 'android-studio'
 #cask 'webstorm'

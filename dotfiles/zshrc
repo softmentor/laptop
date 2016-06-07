@@ -55,7 +55,7 @@ plugins=(git bundler osx sudo systemctl archlinux tmux common-aliases colored-ma
 # User configuration
 export PATH="$HOME/.bin:$PATH"
 # Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/.rvm/bin" 
+export PATH="$PATH:$HOME/.rvm/bin"
 # Add Rubies
 export PATH="$PATH:$HOME/.rvm/gems/ruby-2.2.1/bin:$HOME/.rvm/gems/ruby-2.2.1@global/bin:$HOME/.rvm/rubies/ruby-2.2.1/bin"
 export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki"
@@ -104,10 +104,21 @@ source $ZSH/oh-my-zsh.sh
 # export CLICOLOR=1
 # export LSCOLORS=exfxcxdxbxegedabagacad
 
-# go
+# go environment variables
+# https://golang.org/cmd/go/#hdr-Environment_variables
 export CC=clang
-GOPATH=/usr/local/bin/go
-GOROOT=/usr/local/bin
+# See 'go help gopath'
+export GOPATH=$HOME/code/golang
+export PATH=$PATH:$GOPATH/bin
+# The root of the go tree
+#export GOROOT=/usr/local/bin/go
+# The directory where 'go install' will install a command
+#export GOBIN
+#The operating system for which to compile code.Examples are linux, darwin, windows, netbsd.
+#export GOOS
+#The architecture, or processor, for which to compile code.Examples are amd64, 386, arm, ppc64.
+#export GOARCH
+
 
 # nvm, nodejs version management
 #source ~/.nvm/nvm.sh
@@ -115,7 +126,7 @@ GOROOT=/usr/local/bin
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-# to call nvm use automatically whenever you enter a directory that contains an .nvmrc file 
+# to call nvm use automatically whenever you enter a directory that contains an .nvmrc file
 # with a string telling nvm which node to use
 autoload -U add-zsh-hook
 load-nvmrc() {

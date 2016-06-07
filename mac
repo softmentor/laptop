@@ -42,7 +42,12 @@ trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 # Die on failures
 set -e
 # set -x
-
+HOME_GOLANG=$HOME/code/golang
+HOME_BIN=$HOME/.bin/
+HOME_ZSHRC=$HOME/.zshrc
+HOME_PROFILE=$HOME/.profile
+HOME_OHMYZSH=$HOME/.oh-my-zsh
+HOME_NVM=$HOME/.nvm
 
 
 #----------------------------------------------
@@ -63,7 +68,7 @@ fancy_echo() {
 log()  { printf "%b\n" "$*"; }
 debug(){ log "\nDEBUG: $*\n" ; }
 fail() { log "\nERROR: $*\n" ; exit 1 ; }
-download(){ 
+download(){
   # do not fail, silent, ShowError, follow redirects, specify file name
   fancy_echo "Inside download, about to curl ... %s" "$1"
   curl -fsSL $1
@@ -73,11 +78,11 @@ append_to_file() {
   local file="$1"
   local text="$2"
 
-  if [ "$file" = "$HOME/.zshrc" ]; then
+  if [ "$file" = "$HOME_ZSHRC" ]; then
     if [ -w "$HOME/.zshrc.local" ]; then
       file="$HOME/.zshrc.local"
     else
-      file="$HOME/.zshrc"
+      file="$HOME_ZSHRC"
     fi
   fi
 
@@ -98,10 +103,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
   if [ ! -f "$HOME/.mkshrc" ]; then
     sudo chmod 770 ~/.mkshrc
   fi
-  if [ ! -f "$HOME/.profile" ]; then
+  if [ ! -f "$HOME_PROFILE" ]; then
     sudo chmod 770 ~/.profile
   fi
-  if [ ! -f "$HOME/.zshrc" ]; then
+  if [ ! -f "$HOME_ZSHRC" ]; then
     sudo chmod 770 ~/.bashrc ~/.bash_profile ~/.zshrc ~/.zlogin
   fi
   BASH_MIN_VERSION="3.2.25"
@@ -113,12 +118,16 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
       fancy_echo "BASH ${BASH_MIN_VERSION} required (you have $BASH_VERSION)"
       exit 1
     fi
-  if [ ! -d "$HOME/.bin/" ]; then
-    mkdir "$HOME/.bin"
+  if [ ! -d "$HOME_BIN" ]; then
+    mkdir "$HOME_BIN"
   fi
 
-  if [ ! -f "$HOME/.zshrc" ]; then
-    touch "$HOME/.zshrc"
+  if [ ! -f "$HOME_ZSHRC" ]; then
+    touch "$HOME_ZSHRC"
+  fi
+
+  if [ ! -d "$HOME_GOLANG" ]; then
+    mkdir "$HOME_GOLANG"
   fi
 
   case "$SHELL" in
@@ -140,13 +149,13 @@ Usage
 "
 }
 install_ohmyzsh(){
-  if [ ! -d "$HOME/.oh-my-zsh/" ]; then
+  if [ ! -d "$HOME_OHMYZSH" ]; then
     fancy_echo "Installing oh-my-zsh ... ..."
     curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
   else
     fancy_echo "oh-my-zsh already installed. Skipping ..."
   fi
-  
+
 }
 
 install_xcode() {
@@ -155,7 +164,7 @@ install_xcode() {
   xcodeCmd="xcode-select -p"
   # Get and install Xcode CLI tools
   OSX_VERS=$(sw_vers -productVersion | awk -F "." '{print $2}')
-  #Reference: 
+  #Reference:
   #https://github.com/timsutton/osx-vm-templates/blob/ce8df8a7468faa7c5312444ece1b977c1b2f77a4/scripts/xcode-cli-tools.sh
   #https://github.com/chcokr/osx-init/blob/master/install.sh
   if ! command_exists $xcodeCmd; then
@@ -163,7 +172,7 @@ install_xcode() {
     # on 10.9+, we can leverage SUS to get the latest CLI tools
     if [ "$OSX_VERS" -ge 9 ]; then
       fancy_echo "OSX_VERS > 9 install CommandLineTools ....."
-      # create the placeholder file that's checked by CLI updates' .dist code 
+      # create the placeholder file that's checked by CLI updates' .dist code
       # in Apple's SUS catalog
       touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
       # find the CLI Tools update
@@ -212,7 +221,7 @@ install_homebrew(){
       'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
 
     # shellcheck disable=SC2016
-    append_to_file "$HOME/.zshrc" 'export PATH="/usr/local/bin:$PATH"'
+    append_to_file "$HOME_ZSHRC" 'export PATH="/usr/local/bin:$PATH"'
     sudo mkdir -p /opt/homebrew-cask
     sudo chmod -R 770 /opt/homebrew-cask
     brew tap homebrew/bundle
@@ -228,9 +237,9 @@ install_rrcup(){
   if [ ! -d "$HOME/laptop/" ]; then
     fancy_echo "Cloning laptop"
     git clone $dotfiles_url ~/laptop
-    pushd ~/laptop 
+    pushd ~/laptop
     fancy_echo "Moving to laptop ..."
-    git checkout master 
+    git checkout master
     git pull
     popd
   else
@@ -302,28 +311,28 @@ install_nvm(){
   fi
   #if nvm directory already present, remove it.
   if ! command -v nvm >/dev/null; then
-    if [ ! -d "$HOME/.nvm/" ]; then
-      pushd "$HOME/.nvm/"
+    if [ ! -d "$HOME_NVM" ]; then
+      pushd "$HOME_NVM/"
       if [! git rev-parse --is-inside-work-tree]; then
         fancy_echo "NVM installed folder is not git controlled. Deleting ..."
         # This is a not a git directory
-        rm -rf "$HOME/.nvm/"
+        rm -rf "$HOME_NVM/"
         # we will not install nvm via brew, as it has many issues.
         # use the instructions as mention by nvm dev.
         fancy_echo "NVM not installed. Installing ..."
-        git clone https://github.com/creationix/nvm.git ~/.nvm 
+        git clone https://github.com/creationix/nvm.git ~/.nvm
         git checkout -b `git describe --abbrev=0 --tags`
       fi
       popd
     fi
     fancy_echo "NVM already installed. Configuring node version ..."
-    source ~/.nvm/nvm.sh
+    source $HOME_NVM/nvm.sh
     nvm install node
     nvm alias default node
   else
     fancy_echo "Already using the latest version of NVM. Skipping, just updating..."
     # NVM already installed just update.
-    pushd ~/.nvm
+    pushd $HOME_NVM
     git pull
     popd
   fi
@@ -353,6 +362,9 @@ install_npm_global_pkg(){
   npm install -g typescript
   npm install -g typings
   npm install -g tsd
+  #gitbooks for docs
+  # http://toolchain.gitbook.com/setup.html
+  npm install -g gitbook-cli
 }
 
 #Install or update ruby gems from a list of items.

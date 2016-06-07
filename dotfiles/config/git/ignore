@@ -1,3 +1,7 @@
+# Please refer to https://github.com/github/gitignore
+# This has more extensive collection of gitignores
+# ======================================================================
+
 # ======================================================================
 # Mac OS X
 # ======================================================================
@@ -11,12 +15,12 @@
 *.xcuserstate
 project.xcworkspace/
 xcuserdata/
- 
+
 # Generated files
 *.o
 *.pyc
 *.hi
- 
+
 # ======================================================================
 #Python modules
 # ======================================================================
@@ -52,6 +56,12 @@ test-output/
 # Ruby:
 .ruby-version
 
+# ======================================================================
+# Golang:
+.gopath/
+autogen/
+vendor/pkg/
+
 
 # ======================================================================
 ### Eclipse ###
@@ -84,7 +94,7 @@ local.properties
 # PDT-specific
 .buildpath
 
-# sbteclipse plugin 
+# sbteclipse plugin
 .target
 
 # TeXlipse plugin
@@ -157,6 +167,12 @@ crashlytics-build.properties
 
 # sftp configuration file
 sftp-config.json
+
+# ======================================================================
+### VisualStudioCode ###
+# ======================================================================
+.vscode
+
 
 # ======================================================================
 # RVM and rbenv

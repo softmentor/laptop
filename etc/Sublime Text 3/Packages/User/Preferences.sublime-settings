@@ -1,0 +1,70 @@
+{
+	"color_scheme": "Packages/User/Twilight-Kelly.tmTheme",
+
+	//https://github.com/YabataDesign/afterglow-theme
+	"theme": "Afterglow-blue.sublime-theme",
+	// "color_scheme": "Packages/Theme - Afterglow/Afterglow.tmTheme",
+	// "color_scheme": "Packages/Theme - Afterglow/Afterglow-twilight.tmTheme",
+	"sidebar_no_icon": true,
+	"folder_no_icon": true,
+	"tabs_small": true,
+	"status_bar_brighter": true,
+	"color_inactive_tabs": true,
+	"tabs_padding_small": true,
+
+	"auto_complete": false,
+	"auto_complete_commit_on_tab": false,
+	"detect_indentation": true,
+	"draw_indent_guides": true,
+	"enable_tab_scrolling": false,
+	"ensure_newline_at_eof_on_save": true,
+	"file_exclude_patterns":
+	[
+		".DS_Store"
+	],
+	"find_selected_text": true,
+	"fold_buttons": false,
+	"folder_exclude_patterns":
+	[
+		".git",
+		".bundle",
+		".rbx"
+	],
+	"font_face": "monaco",
+	"font_size": 10.0,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"index_exclude_patterns":
+	[
+		"*.log",
+		".git"
+	],
+	"index_files": false,
+	"match_brackets": true,
+	"match_brackets_angle": false,
+	"match_brackets_braces": true,
+	"match_brackets_content": true,
+	"match_brackets_square": true,
+	"new_window_settings":
+	{
+		"hide_open_files": true,
+		"show_minimap": true,
+		"show_tabs": true,
+		"side_bar_visible": true,
+		"status_bar_visible": true
+	},
+	"remember_open_files": true,
+	"remember_open_folders": true,
+	"save_on_focus_lost": true,
+	"scroll_past_end": true,
+	"tab_size": 2,
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"use_simple_full_screen": true,
+	"vintage_start_in_command_mode": false,
+	"word_wrap": true
+}

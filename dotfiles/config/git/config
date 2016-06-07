@@ -12,7 +12,8 @@
 	token = xxxxxxxxxxxxxx
 [core]
 	editor = subl -w
-	excludesfile = ~/.gitignore_global
+#	excludesfile = /Users/jiny/.gitignore_global
+#	excludesfile = ~/.gitignore_global
 [color]
 	ui = true
 [difftool "sourcetree"]
