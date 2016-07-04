@@ -27,6 +27,8 @@ defaults write com.apple.screencapture location -string “$HOME/Desktop”
 defaults write com.apple.screencapture type -string “png”
 # Display full POSIX path as Finder window title
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+# Display advance options for disk utility
+defaults write com.apple.DiskUtility advanced-image-options 1
 killall Dock 2>/dev/null;
 killall Finder 2>/dev/null;
 
@@ -350,6 +352,7 @@ install_npm_global_pkg(){
   npm install -g underscore
   npm install -g express
   npm install -g http-server
+  npm install -g eslint
 
   # testing
   npm install -g protractor
@@ -365,6 +368,9 @@ install_npm_global_pkg(){
   #gitbooks for docs
   # http://toolchain.gitbook.com/setup.html
   npm install -g gitbook-cli
+
+  #angular2 development
+  npm install -g angular-cli
 }
 
 #Install or update ruby gems from a list of items.
