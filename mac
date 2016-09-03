@@ -140,7 +140,13 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
       ;;
   esac
 }
-# Usage for this script.
+# <TODO>: Usage for this script and options
+# https://gist.github.com/cosimo/3760587
+# http://unix.stackexchange.com/questions/230457/how-to-skip-the-first-argument-in-a-script
+#http://wiki.bash-hackers.org/scripting/posparams
+# http://wiki.bash-hackers.org/howto/getopts_tutorial
+# http://stackoverflow.com/questions/16483119/example-of-how-to-use-getopts-in-bash
+
 usage()
 {
   printf "%b" "
@@ -435,7 +441,7 @@ fancy_echo "================================================================="
 install_nvm
 fancy_echo "Installing/Upgrading npm packages ..."
 fancy_echo "================================================================="
-install_npm_global_pkg
+#install_npm_global_pkg
 
 #update_packages
 
