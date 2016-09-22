@@ -46,7 +46,8 @@ cask 'vagrant-manager'
 #brew 'docker-compose'
 #cask 'kitematic'
 # only dockertoolbox is required as it installs all that is required for docker.
-cask 'dockertoolbox'
+# Commented out, use Docker for mac instead
+#cask 'dockertoolbox'
 
 
 

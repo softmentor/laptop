@@ -118,7 +118,7 @@ brew 'tmux'
 # editor
 brew 'vim', args: ['override-system-vi --with-python --with-ruby --with-perl']
 #brew 'macvim', args: ['--env-std --override-system-vim --with-python-config-dir=/usr/local/lib/python2.7/config']
-cask 'sublime-text3'
+cask 'sublime-text'
 cask 'atom'
 cask 'visual-studio-code'
 
