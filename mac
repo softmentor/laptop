@@ -268,7 +268,8 @@ install_rrcup(){
     brew install rcm
     sudo rcup -d ~/laptop/dotfiles -v
   else
-    fancy_echo "RCM for dotfiles already installed. Skipping ..."
+    fancy_echo "RCM for dotfiles already installed. Skipping install, updating ..."
+    sudo rcup -d ~/laptop/dotfiles -v
   fi
 }
 
