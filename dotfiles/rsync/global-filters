@@ -1,0 +1,42 @@
+
+
+# TODO<softmentor>: Filter out the generic list for mac laptops (El Captain) 
+#=====================================================================
+- lost+found*
+- *.[Ll][Oo][Gg]
+- *.[Tt][Mm][Pp]
+- *.[Cc][Aa][Cc][Hh][Ee]
+- [Tt][Mm][Pp]*
+- [Tt][Ee][Mm][Pp]*
+- [Ll][Oo][Gg]*
+- [Cc][Aa][Cc][Hh][Ee]*
+- [Cc][Oo][Oo][Kk][Ii][Ee][Ss]*
+- *NTUSER.DAT*
+- *ntuser*
+- *usrclass*
++ /root/
+- /root/.cpan
++ /root/**
++ /home/
++ /home/**
++ /boot/
++ /boot/**
++ /etc/
++ /etc/**
++ /usr/
++ /usr/local/
++ /usr/local/**
++ /opt/
++ /opt/**
++ /var/
++ /var/lib/
++ /var/lib/**
++ /var/spool/
++ /var/spool/**
++ /var/local/
++ /var/local/**
++ /var/www/
++ /var/www/**  
++ /data/
++ /data/**
+- *

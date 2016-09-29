@@ -1,0 +1,82 @@
+
+# Please refer to below urls to understand the include and exclude patterns and rules.
+# http://linuxcommand.org/man_pages/rsync1.html
+# http://www.tutorialspoint.com/unix_commands/rsync.htm
+# http://blog.mudflatsoftware.com/blog/2012/10/31/tricks-with-rsync-filter-rules/
+# 
+
+# TODO<softmentor>: Filter out the generic list for mac laptops (El Captain) 
+#=====================================================================
+# Mac specific folders to ignore
+#rsync to exclude .DS_Store files except when the .DS_Store file is the last file in a directory
+-P .DS_Store
+.Spotlight-*/
+.Trashes
+/tmp/*
+/Network/*
+*/.Trash
+
+/Library/*/*
+#
+- /.*
+
+/Users/thattilj/.nvm/*
+
+
+
+## Rsync Filter for $HOME
+
+# Universal excludes -- These apply to all subdirs
+- [Cc]ache
+- temp
+- tmp
+- octave-core
+
+# Emacs temp files
+- .#*
+
+# Exclude certain directories
+
+# Anything in Downloads can be downloaded again, so don't save it
+- /Downloads
+- /Dropbox
+
+# These are too big to include
+- /Music
+- /Videos
+- /Pictures
+- /bioinformatics
+
+# These are transient
+- /temp
+- /.local/share/Trash
+- /.cache
+
+
+# Misc files/dirs to exclude
+- /.abbrev_defs
+- /.adobe
+- /.aspell.en.
+- /.bogofilter
+- /.bzr.log
+- /.compiz/session
+- /.cpanplus
+- /.dbus
+- /.dc_history
+- /.dropbox
+- /.dropbox-dist
+- /.dvdcss
+- /.esd_auth
+- /.fontconfig
+- /.freemind/*.mm
+- /.gimp-2.6/tmp
+- /.gimp-2.6/swap
+- /.gksu.lock
+- /.googleearth/Cache
+- /.googleearth/Temp
+- /.gvfs
+- /.macromedia
+- /.marble/data
+- /.Trash
+- /.usbcreator.log
+- /.xsession-errors*
