@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 
 ##############################################
 # Welcome to the mac developer backup/syc script!
@@ -27,11 +27,11 @@ CMDNAME=`basename $0`
 #----------------------------------------------
 #dry run is turned off by default, unless user specifies -n in command.
 DRY_RUN=''
-SOURCE='$HOME'
+SOURCE=$HOME/synctest
 HOST_NAME=`hostname`
 MC_NAME=`echo ${HOST_NAME//./_}`
-TARGET='/Volumes/sg_01t_bk_0/$MC_NAME/$USER/'
-EXCLUDES='$HOME/laptop/exclude-sync-list.txt'
+TARGET="/Volumes/sg_01t_bk_0/$MC_NAME/$USER/"
+EXCLUDES="$HOME/laptop/exclude-sync-list.txt"
 
 while getopts n OPT
 do
@@ -47,18 +47,21 @@ done
 #----------------------------------------------
 validate_before_run(){
   echo "Validating all conditions before run ......"
-  if [ ! -r "$SRC" ]; then
-    MESSAGE="Source $SRC not readable - Cannot start the sync process"
+  if [ ! -r "$SOURCE" ]; then
+    MESSAGE="Source $SOURCE not readable - Cannot start the sync process"
+    echo $MESSAGE
+    exit;
+  fi
+  #[[ ! -d $TARGET ]] && echo "Target directory does NOT exists." && exit 1
+  if [ ! -d "$TARGET" ]; then
+    echo "Target $TARGET directory does NOT exists. Will attempt to create one ..."
+    mkdir -p "$TARGET"
+  elif [ ! -w "$TARGET" ]; then
+    MESSAGE="Destination $TARGET not writeable - Cannot start the sync process"
     echo $MESSAGE
     exit;
   fi
 
-  if [ ! -w "$DST" ]; then
-    MESSAGE="Destination $DST not writeable - Cannot start the sync process"
-    echo $MESSAGE
-    exit;
-  fi
-  [[ ! -d $TARGET ]] && echo "Target directory does NOT exists." && exit 1
 }
 
 
@@ -174,13 +177,13 @@ add_sync_options(){
 
   # PLEASE DON'T CHANGE THE ORDER OF THE SYNC_OPTS
   # Beware that the options should go in the right order
-  SYNC_OPTS='-vaE -S --progress --human-readable --stats'
+  SYNC_OPTS="-vaE -S --progress --human-readable --stats"
   #merge the global filters
   if [ ! -f "$HOME/.rsync/.global-filters" ]; then
       echo "Skipping user home directory merge filter, $HOME/.rsync/.global-filters not present  ..."
     else
       #File present, add the filter
-      SYNC_OPTS='$SYNC_OPTS --filter=". $HOME/.rsync/.global-filters"'
+      SYNC_OPTS="$SYNC_OPTS --filter=\". $HOME/.rsync/.global-filters\""
   fi
 
   #merge any filters in directory of source
@@ -188,13 +191,13 @@ add_sync_options(){
       echo "Skipping source directory merge filter, rsync-filter file not present ..."
     else
       #File present, add the filter
-      SYNC_OPTS='$SYNC_OPTS --filter=". /.rsync-filters"'
+      SYNC_OPTS="$SYNC_OPTS --filter=\". /.rsync-filters\""
   fi
   #Specify the excludes if any
-  SYNC_OPTS='$SYNC_OPTS --exclude-from=$EXCLUDES'
+  SYNC_OPTS="$SYNC_OPTS --exclude-from=$EXCLUDES"
 
   # Add dry run flag if user opted for it.
-  SYNC_OPTS='$SYNC_OPTS $DRY_RUN' 
+  SYNC_OPTS="$SYNC_OPTS $DRY_RUN"
 }
 
 validate_before_run
@@ -208,7 +211,6 @@ echo "Command to run: rsync $SYNC_OPTS ${SOURCE} ${TARGET}"
 echo "===================================================================="
 #rsync -r -t -v --progress --exclude-from=${EXCLUDE-LIST} $DRY_RUN \
 #rsync -r -t -v -P --exclude-from=${EXCLUDES} $DRY_RUN ${SOURCE} ${TARGET}
-#rsync $SYNC_OPTS ${SOURCE} ${TARGET}
+rsync $SYNC_OPTS ${SOURCE} ${TARGET}
 echo "===================================================================="
 echo "End sync !!!!!!!!! "
-
