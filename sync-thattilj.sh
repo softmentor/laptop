@@ -32,6 +32,7 @@ HOST_NAME=`hostname`
 MC_NAME=`echo ${HOST_NAME//./_}`
 TARGET="/Volumes/sg_01t_bk_0/$MC_NAME/$USER/"
 EXCLUDES="$HOME/laptop/exclude-sync-list.txt"
+GLOBAL_FILTERS="$HOME/.rsync/global-filters"
 
 while getopts n OPT
 do
@@ -177,13 +178,14 @@ add_sync_options(){
 
   # PLEASE DON'T CHANGE THE ORDER OF THE SYNC_OPTS
   # Beware that the options should go in the right order
-  SYNC_OPTS="-vaE -S --progress --human-readable --stats"
+  SYNC_OPTS="-vvaE -S --progress --human-readable --stats"
   #merge the global filters
-  if [ ! -f "$HOME/.rsync/.global-filters" ]; then
-      echo "Skipping user home directory merge filter, $HOME/.rsync/.global-filters not present  ..."
+  if [ ! -f "$GLOBAL_FILTERS" ]; then
+      echo "Skipping user home directory merge filter, $GLOBAL_FILTERS not present  ..."
     else
       #File present, add the filter
-      SYNC_OPTS="$SYNC_OPTS --filter=\". $HOME/.rsync/.global-filters\""
+      #SYNC_OPTS="$SYNC_OPTS --filter=\". $GLOBAL_FILTERS\""
+      echo ""
   fi
 
   #merge any filters in directory of source
@@ -191,10 +193,10 @@ add_sync_options(){
       echo "Skipping source directory merge filter, rsync-filter file not present ..."
     else
       #File present, add the filter
-      SYNC_OPTS="$SYNC_OPTS --filter=\". /.rsync-filters\""
+      SYNC_OPTS="$SYNC_OPTS --filter=': /.rsync-filters'"
   fi
   #Specify the excludes if any
-  SYNC_OPTS="$SYNC_OPTS --exclude-from=$EXCLUDES"
+  #SYNC_OPTS="$SYNC_OPTS --exclude-from='$EXCLUDES'"
 
   # Add dry run flag if user opted for it.
   SYNC_OPTS="$SYNC_OPTS $DRY_RUN"
@@ -207,10 +209,11 @@ echo "Settings: .........."
 echo "SYNC_OPTS=$SYNC_OPTS"
 echo "SOURCE=$SOURCE"
 echo "TARGET=$TARGET"
-echo "Command to run: rsync $SYNC_OPTS ${SOURCE} ${TARGET}"
+echo "Command to run: rsync $SYNC_OPTS --filter=\". $GLOBAL_FILTERS\" --exclude-from=$EXCLUDES ${SOURCE} ${TARGET}"
 echo "===================================================================="
 #rsync -r -t -v --progress --exclude-from=${EXCLUDE-LIST} $DRY_RUN \
 #rsync -r -t -v -P --exclude-from=${EXCLUDES} $DRY_RUN ${SOURCE} ${TARGET}
-rsync $SYNC_OPTS ${SOURCE} ${TARGET}
+#TODO: when filter is part of SYNC_OPTS, rsync throws error
+rsync $SYNC_OPTS --filter=". $GLOBAL_FILTERS" --exclude-from=$EXCLUDES ${SOURCE} ${TARGET}
 echo "===================================================================="
 echo "End sync !!!!!!!!! "
