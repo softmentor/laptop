@@ -1,6 +1,6 @@
 EXCLUDES="README.md LICENSE"
 DOTFILES_DIRS="$HOME/laptop/dotfiles-local $HOME/laptop/dotfiles"
-TAGS="config bash gem vim"
+TAGS="config bash gem vim rsync"
 
 #COPY_ALWAYS="ssh/id_* weechat/* netrc"
 #COPY_ALWAYS="*"
