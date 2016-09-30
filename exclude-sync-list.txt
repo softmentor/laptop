@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-/Users/thattilj/.nvm/*
-
 # Exclude certain directories
 
 # Anything in Downloads can be downloaded again, so don't save it
