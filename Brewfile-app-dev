@@ -11,6 +11,7 @@ brew 'sbt'
 
 #documentation
 cask 'gitbook'
+brew 'pandoc'
 
 # web dev
 #brew 'node'

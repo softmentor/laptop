@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
+# =============================================================================
+# Copyright       : LICENSE.md
+# Contributing    : CONTRIBUTING.md
+# 
+# =============================================================================
 
 ##############################################
+# 
 # Welcome to the mac developer backup/syc script!
 # This script helps the user to backup or sync 
 # SRC to DEST (currently on local directory or mount supported)
@@ -27,12 +33,16 @@ CMDNAME=`basename $0`
 #----------------------------------------------
 #dry run is turned off by default, unless user specifies -n in command.
 DRY_RUN=''
-SOURCE=$HOME/synctest
+SOURCE=$HOME/
 HOST_NAME=`hostname`
 MC_NAME=`echo ${HOST_NAME//./_}`
-TARGET="/Volumes/sg_01t_bk_0/$MC_NAME/$USER/"
+TARGET="/Volumes/sg_01t_bk_0 1/$MC_NAME/$USER/"
 EXCLUDES="$HOME/laptop/exclude-sync-list.txt"
 GLOBAL_FILTERS="$HOME/.rsync/global-filters"
+# For debug purpose only.
+#EXCLUDES="./exclude-sync-list.txt"
+#GLOBAL_FILTERS="./dotfiles/rsync/global-filters"
+
 
 while getopts n OPT
 do

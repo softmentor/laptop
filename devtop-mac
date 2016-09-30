@@ -45,6 +45,8 @@ trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 # Die on failures
 set -e
 # set -x
+
+# Default setting for file, directory locations (can be customized), recommend to leave the defaults.
 HOME_GOLANG=$HOME/code/golang
 HOME_BIN=$HOME/.bin/
 HOME_ZSHRC=$HOME/.zshrc

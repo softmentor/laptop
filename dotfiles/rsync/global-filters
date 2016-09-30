@@ -1,41 +1,60 @@
+#!/usr/bin/env bash
 
+##############################################
+# Welcome to the mac developer backup/syc script!
+# This script helps the user to backup or sync 
+# SRC to DEST (currently on local directory or mount supported)
+# Example Use Case:
+# 1) Want to backup data (exact copy) of laptop data to a usb drive.
+#
+# Please refer to below urls to understand the include and exclude patterns and rules.
+# http://linuxcommand.org/man_pages/rsync1.html
+# http://www.tutorialspoint.com/unix_commands/rsync.htm
+# http://blog.mudflatsoftware.com/blog/2012/10/31/tricks-with-rsync-filter-rules/ 
+##############################################
 
-# TODO<softmentor>: Filter out the generic list for mac laptops (El Captain) 
-#=====================================================================
-- lost+found*
-- *.[Ll][Oo][Gg]
+# Filter out the generic list for mac laptops (El Captain)
+#rsync to exclude .DS_Store files except when the .DS_Store file is the last file in a directory
+-p .DS_Store
+# Exclude all temporary files, backup not required.
+- /tmp*
+- /Tmp*
+- /Temp/*
+- /temp/*
 - *.[Tt][Mm][Pp]
-- *.[Cc][Aa][Cc][Hh][Ee]
-- [Tt][Mm][Pp]*
-- [Tt][Ee][Mm][Pp]*
-- [Ll][Oo][Gg]*
-- [Cc][Aa][Cc][Hh][Ee]*
-- [Cc][Oo][Oo][Kk][Ii][Ee][Ss]*
-- *NTUSER.DAT*
-- *ntuser*
-- *usrclass*
-+ /root/
-- /root/.cpan
-+ /root/**
-+ /home/
-+ /home/**
-+ /boot/
-+ /boot/**
-+ /etc/
-+ /etc/**
-+ /usr/
-+ /usr/local/
-+ /usr/local/**
-+ /opt/
-+ /opt/**
-+ /var/
-+ /var/lib/
-+ /var/lib/**
-+ /var/spool/
-+ /var/spool/**
-+ /var/local/
-+ /var/local/**
-+ /var/www/
-+ /var/www/**  
-+ /data/
-+ /data/**
+- *.[Tt][Ee][Mm][Pp]
+#Avoid broad-based matches as it can have unintended files,dir being matched.
+#- *.[Ll][Oo][Gg]
+#- *.[Cc][Aa][Cc][Hh][Ee]
+#- [Cc][Aa][Cc][Hh][Ee]*
+- /.cache
+- .Trashes
+- */.Trash
+- lost+found*
+- .Spotlight-*/
+- /Network/*
+- /.local/share/Trash
+
+
+# Include following application library
++ /Library/Preferences
++ /Library/Printers
++ /Library/Safari
++ /Library/Spelling
++ /Library/SyncedPreferences
++ /Library/WebKit
++ /Library/Keychains
++ /Library/Application Support/AddressBook
++ /Library/Application Support/com.evernote.Evernote
++ /Library/Application Support/com.evernote.EvernoteHelper
++ /Library/Fonts
+# Exclude all remaining Library files, directory
+- /Library/*/*
+
+
+# Include following dotfiles
++ /.bash_history
++ /.vscode
++ /.zsh_history
+# Exclude all remaining dotfiles
+- /.*
