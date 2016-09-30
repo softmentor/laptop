@@ -224,6 +224,6 @@ echo "===================================================================="
 #rsync -r -t -v --progress --exclude-from=${EXCLUDE-LIST} $DRY_RUN \
 #rsync -r -t -v -P --exclude-from=${EXCLUDES} $DRY_RUN ${SOURCE} ${TARGET}
 #TODO: when filter is part of SYNC_OPTS, rsync throws error
-rsync $SYNC_OPTS --filter=". $GLOBAL_FILTERS" --exclude-from=$EXCLUDES "${SOURCE}" "${TARGET}"
+rsync $SYNC_OPTS --filter=". $GLOBAL_FILTERS" --exclude-from="$EXCLUDES" "${SOURCE}" "${TARGET}"
 echo "===================================================================="
 echo "End sync !!!!!!!!! "
