@@ -311,6 +311,8 @@ install_rvm(){
       if [ "$local_version" != "$latest_version" ]; then
         fancy_echo "Upgrading RVM..."
         rvm get stable --auto-dotfiles --autolibs=enable --with-gems="bundler"
+        fancy_echo "Upgrading RVM gemset ...."
+        rvm rubygems current
       else
         fancy_echo "Already using the latest version of RVM. Skipping..."
       fi
@@ -402,14 +404,23 @@ install_ruby_gem() {
     fi
   fi
 }
-update_packages(){
-  # Update npm & packages
-  npm install npm -g
-  npm update -g
+update_gem_packages(){
   # Update Ruby & gems
+  # NOTE: RubyGems 1.1 and 1.2 have problems upgrading when there is no rubygems-update installed.
+  # You will need to use the following instructions if you see Nothing to update. 
+  # If you have an older version of RubyGems installed, then you can still do it in two steps:
+  # Steps: brew uninstall ruby
+  # sudo gem update —system
   gem update —system
   gem update
 }
+
+update_npm_packages(){
+  # Update npm & packages
+  npm install npm -g
+  npm update -g
+}
+
 #----------------------------------------------
 # End of Functions for this shell
 #----------------------------------------------
@@ -441,6 +452,7 @@ fancy_echo "================================================================="
 install_rvm
 fancy_echo "Installing/Upgrading ruby_gem ..."
 fancy_echo "================================================================="
+update_gem_packages
 install_ruby_gem 'bundler'
 install_ruby_gem 'cocoapods'
 fancy_echo "Installing/Upgrading nvm ..."
@@ -450,7 +462,7 @@ fancy_echo "Installing/Upgrading npm packages ..."
 fancy_echo "================================================================="
 #install_npm_global_pkg
 
-#update_packages
+#update_npm_packages
 
 #########################################################
 #  Start installing all applications using homebrew
