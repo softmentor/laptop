@@ -19,6 +19,7 @@ brew 'pandoc'
 # databases
 brew 'postgresql', args: ['no-python']
 brew 'redis'
+cask 'razorsql' 
 #brew 'rabbitmq'
 #brew 'memcached'
 

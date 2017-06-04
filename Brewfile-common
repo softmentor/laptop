@@ -83,9 +83,9 @@ cask 'font-inconsolata-dz-for-powerline'
 cask 'font-inconsolata-g-for-powerline'
 
 cask 'font-meslo-lg'
-cask 'font-meslo-lg-for-powerline'
+cask 'font-meslo-for-powerline'
 cask 'font-consolas-for-powerline'
-cask 'font-anonymous-pro-for-powerline'
+cask 'font-anonymice-powerline'
 
 
 # utils
@@ -99,7 +99,7 @@ brew 'awscli'
 brew 'terminal-notifier'
 brew 'htop-osx'
 brew 'imagemagick'
-brew 'homebrew/dupes/rsync'
+brew 'rsync'
 brew 'boost'
 brew 'pkg-config'
 brew 'freetype'
