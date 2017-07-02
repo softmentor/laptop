@@ -75,7 +75,8 @@ cask 'google-hangouts'
 cask 'kindle'
 
 #GTD (Get things done) - aka productivity
-cask 'todoist'
+# mac store only - https://itunes.apple.com/in/app/todoist-to-do-list-task-list/id585829637?mt=12
+#cask 'todoist'
 
 #notes
 cask 'evernote'

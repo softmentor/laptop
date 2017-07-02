@@ -32,6 +32,8 @@ defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 defaults write com.apple.DiskUtility advanced-image-options 1
 killall Dock 2>/dev/null;
 killall Finder 2>/dev/null;
+# To make effect the screencapture location change
+killall SystemUIServer
 
 #----------------------------------------------
 # Configure the shell
