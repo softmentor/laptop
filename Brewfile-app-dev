@@ -74,6 +74,9 @@ cask 'google-hangouts'
 #books
 cask 'kindle'
 
+#GTD (Get things done) - aka productivity
+cask 'todoist'
+
 #notes
 cask 'evernote'
 
