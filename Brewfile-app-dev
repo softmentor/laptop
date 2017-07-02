@@ -4,6 +4,11 @@
 #==============================================================================
 # Application Dev Tools
 #==============================================================================
+# CLI tool to install from mac store, incase cask/brew are not present
+# Thanks and Courtesy to: https://www.taniarascia.com/setting-up-a-brand-new-mac-for-development/
+# More details: https://github.com/mas-cli/mas
+brew 'mas'
+
 # build tools
 brew 'maven'
 brew 'gradle'
@@ -77,6 +82,12 @@ cask 'kindle'
 #GTD (Get things done) - aka productivity
 # mac store only - https://itunes.apple.com/in/app/todoist-to-do-list-task-list/id585829637?mt=12
 #cask 'todoist'
+
+
+# Peco to filter things like logs, process stats, find files.
+# Interactive filter and look through the current results.
+# More details: https://github.com/peco/peco/wiki/Sample-Usage
+brew 'peco'
 
 #notes
 cask 'evernote'
