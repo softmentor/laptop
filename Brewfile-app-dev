@@ -13,6 +13,8 @@ brew 'sbt'
 cask 'gitbook'
 brew 'pandoc'
 
+brew 'graphviz'
+
 # web dev
 #brew 'node'
 

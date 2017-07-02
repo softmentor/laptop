@@ -329,7 +329,6 @@ install_nvm(){
   #if nvm directory already present, remove it.
   if ! command -v nvm >/dev/null; then
     if [ ! -d "$HOME_NVM" ]; then
-      mkdir "$HOME_NVM/"
       pushd "$HOME_NVM/"
       if [! git rev-parse --is-inside-work-tree]; then
         fancy_echo "NVM installed folder is not git controlled. Deleting ..."
