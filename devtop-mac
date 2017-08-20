@@ -11,6 +11,20 @@
 ##############################################
 
 #----------------------------------------------
+# Configure the shell
+#----------------------------------------------
+# Some specific hygine settings to configure the shell
+shopt -s extglob
+set -o errtrace
+set -o errexit
+# shellcheck disable=SC2154
+trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
+# Die on failures
+set -e
+# set -x
+
+
+#----------------------------------------------
 # Configure the mac environment
 #----------------------------------------------
 defaults write com.apple.finder AppleShowAllFiles YES; # show hidden files
@@ -26,10 +40,10 @@ defaults write com.apple.finder ShowStatusBar -bool true # Show status bar
 
 # Enable inline attachments in Mail.app
 # http://www.macinstruct.com/node/502
-defaults write com.apple.mail DisableInlineAttachmentViewing -bool on
+defaults write com.apple.mail DisableInlineAttachmentViewing -bool NO
 
 # Save screenshots to the desktop
-mkdir $HOME/Screenshots/
+[[ -d $HOME/Screenshots/ ]] || mkdir $HOME/Screenshots/
 defaults write com.apple.screencapture location -string “$HOME/Screenshots/”
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type png
@@ -37,23 +51,12 @@ defaults write com.apple.screencapture type png
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 # Display advance options for disk utility
 defaults write com.apple.DiskUtility advanced-image-options 1
-killall Dock 2>/dev/null;
-killall Finder 2>/dev/null;
+# Uncomment if you want config setting to effect immediately.
+#killall Dock 2>/dev/null;
+#killall Finder 2>/dev/null;
 # To make effect the screencapture location change
 killall SystemUIServer
 
-#----------------------------------------------
-# Configure the shell
-#----------------------------------------------
-# Some specific hygine settings to configure the shell
-shopt -s extglob
-set -o errtrace
-set -o errexit
-# shellcheck disable=SC2154
-trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
-# Die on failures
-set -e
-# set -x
 
 # Default setting for file, directory locations (can be customized), recommend to leave the defaults.
 HOME_GOLANG=$HOME/code/golang
@@ -493,6 +496,9 @@ brew bundle --file=Brewfile-common
 fancy_echo "Installing/Upgrading Brewfile-app-dev ..."
 fancy_echo "================================================================="
 brew bundle --file=Brewfile-app-dev
+
+# update all the casks using https://github.com/buo/homebrew-cask-upgrade
+brew cu --yes
 
 fancy_echo "Installing/Upgrading Mac Store apps ..."
 # Please ensure Brewfile-app-dev has installed brew 'mas' and you have signed-in once to Mac Store

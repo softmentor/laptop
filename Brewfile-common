@@ -22,6 +22,7 @@ tap 'rcmdnk/file'
 tap 'telemachus/anytap'
 tap 'thoughtbot/formulae'
 tap 'youtux/livecheck'
+tap 'buo/cask-upgrade'
 
 #==============================================================================
 # Pre-requisites

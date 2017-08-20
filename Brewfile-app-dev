@@ -70,6 +70,9 @@ cask 'opera'
 cask 'firefox'
 #cask 'lastpass'
 
+# password manager
+cask 'dashlane'
+
 # apps
 #communication
 cask 'skype'

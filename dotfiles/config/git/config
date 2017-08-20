@@ -11,15 +11,16 @@
 	user = softmentor
 	token = xxxxxxxxxxxxxx
 [core]
-#	excludesfile = /Users/jiny/.gitignore_global
+#	excludesfile = /Users/user/.gitignore_global
 #	excludesfile = ~/.gitignore_global
 [color]
 	ui = true
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Users/jiny/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+[diff]
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code --wait --diff \"$LOCAL\" \"$REMOTE\"
+[mergetool "code"]
+	cmd = code --wait --diff \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [mergetool]
 	keepBackup = false
