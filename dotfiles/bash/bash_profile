@@ -1,4 +1,4 @@
-source ~/.profile
+[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
 PATH=/usr/local/bin:$PATH
 PS1=\"\w $ \"
