@@ -92,8 +92,9 @@ cask 'kindle'
 # More details: https://github.com/peco/peco/wiki/Sample-Usage
 brew 'peco'
 
-#notes
+#notes,mindmap
 cask 'evernote'
+cask 'xmind'
 
 #music
 cask 'spotify'
