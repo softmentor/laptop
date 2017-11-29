@@ -44,3 +44,4 @@
 - /.Trash
 - /.usbcreator.log
 - /.xsession-errors*
+- /.vscode
