@@ -352,7 +352,7 @@ install_npm_global_pkg(){
   #update npm to latest
   fancy_echo "Updating the latest version of npm package manager ..."
   npm install -g npm@latest
-  if [["$1" == "--all"]]; then
+  if [ "$1" == "--all" ]; then
     fancy_echo ">>>>> Updating package nodemon ..."
     npm install -g nodemon
     fancy_echo ">>>>> Updating packages for application dev ..."
@@ -384,6 +384,7 @@ install_npm_global_pkg(){
     fancy_echo ">>>>> Updating packages for angular2 ..."
     #angular2 development
     npm install -g @angular/cli
+    npm update -g
   else
     fancy_echo ">>> Skipped Updating npm global packages ..."
   fi
@@ -461,11 +462,11 @@ fancy_echo "================================================================="
 install_nvm
 fancy_echo "Installing/Upgrading npm packages ..."
 fancy_echo "================================================================="
+# Use the --all option in below command to update all global packages
+# Example: install_npm_global_pkg --all 
 install_npm_global_pkg
 
-# Use the --all option in below command to update all global packages
-# Example: update_npm_packages --all 
-update_npm_packages
+#update_npm_packages
 
 #########################################################
 #  Start installing all applications using homebrew
