@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+gitpullrecursive (){
+    ls -d */ | parallel -I{} -j100 '
+    
+    export PS4="`tput setaf 3`>>> `tput sgr0`"      # output lines as executed in colored intended style
+    set -x                                          # verbose output (print each line as it is executed)
+    
+    if [ -d {}/.git ]; then
+    git -C {} pull > /dev/null
+    fi
+    '
+}
+
+gitpullrecursive1(){
+    find . \
+        -maxdepth 4 -type d \
+        -name ".git" \
+        -execdir python -c 'import os; print(os.path.abspath("."))' \; \
+        -execdir git fetch --all \; \
+        -execdir git reset --hard origin/HEAD \; \
+        -execdir git pull \; \
+}

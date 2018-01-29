@@ -13,6 +13,13 @@
 [core]
 #	excludesfile = /Users/user/.gitignore_global
 #	excludesfile = ~/.gitignore_global
+	#following core.pager value uses less, which prints to stdout,
+	#also has pager functionality (if required), enabling scrolling up and down
+	# quits if the diff fits on the first screen (-F), 
+	#outputs raw control characters (-R), 
+	#chops long lines rather than wrapping (-S), and 
+	#does not use termcap init/deinit strings (-X)
+	pager = less -FRSX
 [color]
 	ui = true
 [diff]

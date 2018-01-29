@@ -1,0 +1,127 @@
+#! /bin/bash
+
+#
+# git-parallel
+#
+
+usage_exit() {
+  cat<<EOS
+  usage: git parallel [-h] [-n] [-j [jobs]] [-e command]]
+
+  git-parallel commands are:
+  -h  show help
+  -c  put a color on the result
+  -j  max job count
+  -e  command to be executed
+EOS
+  exit 1
+}
+
+freeze_repo() {
+  if [ -d  "${repo}/.git" ];then
+    echo "generate ${repo}/.git-freeze"
+    touch ${repo}/.git-freeze
+    exit 0
+  else
+    echo "${repo} is not a git repository."
+    exit 1
+  fi
+}
+
+#git_command='fetch --all && git reset --hard origin/HEAD && git pull'
+git_command='pull origin/HEAD'
+repositorys=()
+worker_count=0
+max_worker=4
+maxdepth=4
+git_color=FALSE
+tmpdir=$HOME/.git-parallel/${$}_$(date +%Y_%m_%d_%H_%M_%S)
+
+#------------------------------------------------
+# start init
+#------------------------------------------------
+### parsing option
+while getopts j:e:m:z:ch flag;do
+  case ${flag} in
+    j ) ### max worker semaphore
+      max_worker=${OPTARG}
+      ;;
+    e ) ### execute git command
+      git_command=${OPTARG}
+      ;;
+    m ) ### search repos maxdepth
+      maxdepth=$((${OPTARG} + 1))
+      ;;
+    c ) ### git config color.ui
+      git_color=TRUE
+      ;;
+    z ) ### gen git-freeze file.
+      repo=${OPTARG}
+      freeze_repo
+      ;;
+    h ) ### help
+      usage_exit
+      ;;
+  esac
+done
+
+[ "${git_command}" = '' ] && usage_exit
+
+### tmpfile timestamp
+[ -d ${tmpdir} ] || mkdir -p ${tmpdir}
+
+### max_worker setting
+[ "${max_worker}" = '' ] && max_worker=1
+[ "${git_color}" = '' ] && git_color=FALSE
+
+### get repositorylist
+repositorys=$(find -L . -maxdepth ${maxdepth} -name '.git' -type d | perl -p -e "s{^\./}{}" | perl -p -e "s{/\.git$}{}" | grep -v "^$")
+
+#------------------------------------------------
+# functions
+#------------------------------------------------
+
+#
+# cd repo and execute git command.
+#
+git_fo() {
+  local repository=$1
+  local git_command=$2
+  local git_color=$3
+
+  local resultfile=${tmpdir}/${repository##*/}_tmp_result
+  [ -d "${repository}/.git" ] || return;
+  [ -f "${repository}/.git-freeze" ] && echo "FREEZE ${repository}" >> "${resultfile}" 2>&1 && return;
+  cd ${repository}
+  [ "${git_color}" = TRUE ] && git_color_config="-c color.ui=always"
+
+  echo "git ${git_command} ::: ${repository}" > ${resultfile}
+  git ${git_color_config} ${git_command} >> ${resultfile} 2>&1
+}
+
+#
+# dump executed background process result
+#
+result_dump() {
+  wait; worker_count=0;
+  for filename in $(find ${tmpdir} -name "*_tmp_result");do
+    cat ${filename};echo;
+    rm -f ${filename}
+  done;
+}
+
+#------------------------------------------------
+# main
+#------------------------------------------------
+main() {
+  echo "start parallel: git ${git_command} $(pwd)"; echo;
+  for x in ${repositorys};do
+    [ ${worker_count} -eq ${max_worker} ] && result_dump
+    worker_count=$(expr ${worker_count} + 1)
+    git_fo ${x} "${git_command}" ${git_color} &
+  done;
+  result_dump;
+  rm -fr ${tmpdir}
+}
+
+main && exit 0;
