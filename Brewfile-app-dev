@@ -41,7 +41,7 @@ brew 'thrift', args: ['--without-haskell --without-php --without-erlang']
 cask 'charles'
 
 #performance testing
-brew 'ab'
+#brew 'ab'
 brew 'wrk'
 
 #Virtual env - docker
@@ -95,6 +95,9 @@ brew 'peco'
 #notes,mindmap
 cask 'evernote'
 cask 'xmind'
+
+#diagrams
+cask 'drawio'
 
 #music
 cask 'spotify'

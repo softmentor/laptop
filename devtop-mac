@@ -287,6 +287,22 @@ install_rrcup(){
   fi
 }
 
+install_editorProfiles(){
+  ETC=$HOME/laptop/etc
+  ITERM_PROFILE_DIR=~/Library/Application\ Support/iTerm2/DynamicProfiles/
+  if [ ! -d "$ETC" ]; then
+    cp $ETC/iterm2/iterm2-profiles.plist
+    fancy_echo "Linking iTerm Profiles directory..."
+      if [ ! -d "$ITERM_PROFILE_DIR" ]; then
+        mkdir -p "$ITERM_PROFILE_DIR"
+      fi
+    rm -rf "~/Library/Application Support/iTerm2/DynamicProfiles"
+    ln -sfhF $ETC/iterm2/profiles/ ~/Library/Application\ Support/iTerm2/DynamicProfiles/
+  else
+    fancy_echo "Empty etc folder, skipping ..."
+  fi
+}
+
 install_rvm(){
   if ! command -v rbenv >/dev/null; then
     if ! command -v rvm >/dev/null; then
