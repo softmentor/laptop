@@ -291,15 +291,14 @@ install_editorProfiles(){
   ETC=$HOME/laptop/etc
   ITERM_PROFILE_DIR=~/Library/Application\ Support/iTerm2/DynamicProfiles/
   if [ ! -d "$ETC" ]; then
-    cp $ETC/iterm2/iterm2-profiles.plist
-    fancy_echo "Linking iTerm Profiles directory..."
-      if [ ! -d "$ITERM_PROFILE_DIR" ]; then
-        mkdir -p "$ITERM_PROFILE_DIR"
-      fi
-    rm -rf "~/Library/Application Support/iTerm2/DynamicProfiles"
-    ln -sfhF $ETC/iterm2/profiles/ ~/Library/Application\ Support/iTerm2/DynamicProfiles/
-  else
     fancy_echo "Empty etc folder, skipping ..."
+  else
+    fancy_echo "Linking iTerm Profiles directory..."
+    if [ ! -d "$ITERM_PROFILE_DIR" ]; then
+      mkdir -p "$ITERM_PROFILE_DIR"
+    fi
+    rm -rf "~/Library/Application Support/iTerm2/DynamicProfiles"
+    ln -sfhF $ETC/iterm2/profiles/iterm2-profiles.plist ~/Library/Application\ Support/iTerm2/DynamicProfiles/
   fi
 }
 
@@ -465,6 +464,9 @@ install_homebrew
 fancy_echo "Installing/Upgrading rcup ..."
 fancy_echo "================================================================="
 install_rrcup
+fancy_echo "Installing/Upgrading editorProfiles ..."
+fancy_echo "================================================================="
+install_editorProfiles
 fancy_echo "Installing/Upgrading rvm ..."
 fancy_echo "================================================================="
 install_rvm
