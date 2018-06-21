@@ -380,6 +380,8 @@ install_npm_global_pkg(){
     fancy_echo ">>>>> Updating packages for testing ..."
     # testing
     npm install -g protractor
+    fancy_echo ">>>>> Updating packages for testing ..."
+    npm install -g eslint
     fancy_echo ">>>>> Updating packages for tools ..."
     # build, package, tools
     npm install -g gulp

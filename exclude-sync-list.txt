@@ -43,5 +43,5 @@
 - /.marble/data
 - /.Trash
 - /.usbcreator.log
-- /.xsession-errors*
 - /.vscode
+- /.xsession-errors*
