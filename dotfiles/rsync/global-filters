@@ -54,7 +54,6 @@
 
 # Include following dotfiles
 + /.bash_history
-+ /.vscode
 + /.zsh_history
 # Exclude all remaining dotfiles
 - /.*
