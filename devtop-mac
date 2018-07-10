@@ -376,6 +376,7 @@ install_npm_global_pkg(){
     npm install -g express
     npm install -g http-server
     npm install -g eslint
+    npm install -g lighthouse
 
     fancy_echo ">>>>> Updating packages for testing ..."
     # testing
