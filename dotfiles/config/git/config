@@ -1,8 +1,8 @@
 [user]
 	name = Jiny Thattil
 	email = softmentor.git@gmail.com
-[includeIf "gitdir:~/Code/git/amz-thattilj/"]
-    path = ~/Code/git/amz-thattilj/.gitconfig
+[includeIf "gitdir:~/Code/git/work-amz/"]
+    path = ~/Code/git/work-amz/.gitconfig
 [credential]
 	helper = store
 [filter "lfs"]
