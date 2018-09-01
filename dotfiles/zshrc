@@ -102,6 +102,9 @@ source $ZSH/oh-my-zsh.sh
 # export CLICOLOR=1
 # export LSCOLORS=exfxcxdxbxegedabagacad
 
+#java environment variables
+export JAVA_HOME=/Library/Java/Home
+
 # go environment variables
 # https://golang.org/cmd/go/#hdr-Environment_variables
 export CC=clang
