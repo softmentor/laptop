@@ -26,7 +26,7 @@ brew 'graphviz'
 # databases
 brew 'postgresql', args: ['no-python']
 brew 'redis'
-cask 'razorsql' 
+cask 'razorsql'
 #brew 'rabbitmq'
 #brew 'memcached'
 
@@ -95,6 +95,7 @@ brew 'peco'
 #notes,mindmap
 cask 'evernote'
 cask 'xmind'
+cask 'anki'
 
 #diagrams
 cask 'drawio'
