@@ -103,7 +103,7 @@ source $ZSH/oh-my-zsh.sh
 # export LSCOLORS=exfxcxdxbxegedabagacad
 
 #java environment variables
-export JAVA_HOME=/Library/Java/Home
+export JAVA_HOME=`/usr/libexec/java_home -v 11`
 
 # go environment variables
 # https://golang.org/cmd/go/#hdr-Environment_variables

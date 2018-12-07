@@ -44,19 +44,8 @@ cask 'charles'
 #brew 'ab'
 brew 'wrk'
 
-#Virtual env - docker
-cask 'virtualbox'
-cask 'vagrant'
-cask 'vagrant-manager'
-#cask 'vmware-fusion'
 # docker
-#brew 'boot2docker'
-#brew 'docker-machine'
-#brew 'docker-compose'
-#cask 'kitematic'
-# only dockertoolbox is required as it installs all that is required for docker.
-# Commented out, use Docker for mac instead
-#cask 'dockertoolbox'
+cask 'docker'
 
 
 
@@ -130,3 +119,6 @@ cask 'calibre'
 #cask 'cyberduck'
 
 cask 'flux'
+
+cask 'amazon-music'
+

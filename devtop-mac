@@ -361,7 +361,7 @@ install_nvm(){
         fancy_echo "Setting default as latest LTS version of node ..."
         nvm alias default lts/*
     fi
-} 
+}
 
 install_npm_global_pkg(){
   #update npm to latest
@@ -427,7 +427,7 @@ install_ruby_gem() {
 update_gem_packages(){
   # Update Ruby & gems
   # NOTE: RubyGems 1.1 and 1.2 have problems upgrading when there is no rubygems-update installed.
-  # You will need to use the following instructions if you see Nothing to update. 
+  # You will need to use the following instructions if you see Nothing to update.
   # If you have an older version of RubyGems installed, then you can still do it in two steps:
   # Steps: brew uninstall ruby
   # sudo gem update —system
@@ -484,7 +484,7 @@ install_nvm
 fancy_echo "Installing/Upgrading npm packages ..."
 fancy_echo "================================================================="
 # Use the --all option in below command to update all global packages
-# Example: install_npm_global_pkg --all 
+# Example: install_npm_global_pkg --all
 install_npm_global_pkg
 
 #update_npm_packages
@@ -500,7 +500,7 @@ fancy_echo "Start Brewing with Brewfiles ..."
 #Cleanup and get ready to install the latest and greatest
 brew update
 brew cleanup
-brew cask cleanup
+#brew cask cleanup
 
 # use the Brewfile which has all required tools
 fancy_echo "Installing/Upgrading Brewfile-common ..."
