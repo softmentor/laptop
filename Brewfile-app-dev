@@ -48,6 +48,8 @@ brew 'wrk'
 cask 'docker'
 
 
+# MachineLearning, AI
+cask 'miniconda'
 
 #==============================================================================
 # Optional Applications - typically required for developers.
