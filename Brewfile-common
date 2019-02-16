@@ -6,13 +6,10 @@
 # Tap all repos
 #==============================================================================
 tap 'caskroom/cask'
-tap 'caskroom/fonts'
 tap 'caskroom/versions'
 tap 'homebrew/apache'
-tap 'homebrew/binary'
 tap 'homebrew/bundle'
 tap 'homebrew/dupes'
-tap 'homebrew/fuse'
 tap 'homebrew/python'
 tap 'homebrew/science'
 tap 'homebrew/services'
@@ -26,7 +23,7 @@ tap 'buo/cask-upgrade'
 
 #==============================================================================
 # Pre-requisites
-# 
+#
 #==============================================================================
 #brew 'caskroom/cask/brew-cask'
 
