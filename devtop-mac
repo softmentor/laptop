@@ -326,7 +326,7 @@ install_rvm(){
       rvm use 2.0.0
       rvm use ruby-head
       rvm use 2.2.2
-      rvm default 2.2.2
+      rvm default ruby-head
       # To prevent warnings, trust the rvmrc file
       # Refer: https://rvm.io/workflow/projects
       # http://stackoverflow.com/questions/15708916/use-rvmrc-or-ruby-version-file-to-set-a-project-gemset-with-rvm
@@ -345,6 +345,12 @@ install_rvm(){
       fi
     fi
   fi
+}
+
+install_rvm_ruby(){
+  rvm install ruby-head
+  rvm use ruby-head
+  rvm default ruby-head
 }
 
 install_nvm(){
@@ -441,6 +447,15 @@ update_npm_packages(){
   npm update -g
 }
 
+install_gitinspector(){
+  if ! command -v gitinspector >/dev/null; then
+    fancy_echo ">>> Installing gitinspector ..."
+    npm i -g gitinspector
+  else
+    fancy_echo ">>> Already installed gitinspector ..."
+  fi
+}
+
 #----------------------------------------------
 # End of Functions for this shell
 #----------------------------------------------
@@ -487,7 +502,11 @@ fancy_echo "================================================================="
 # Example: install_npm_global_pkg --all
 install_npm_global_pkg
 
-#update_npm_packages
+update_npm_packages
+
+fancy_echo "Installing gitinspector ..."
+fancy_echo "================================================================="
+install_gitinspector
 
 #########################################################
 #  Start installing all applications using homebrew
