@@ -96,7 +96,7 @@ cask 'spotify'
 
 # drives
 cask 'dropbox'
-cask 'google-drive'
+cask 'google-backup-and-sync'
 #cask 'skydrive' #onedrive
 
 #productivity
