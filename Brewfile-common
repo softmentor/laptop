@@ -7,7 +7,6 @@
 #==============================================================================
 tap 'caskroom/cask'
 tap 'homebrew/bundle'
-tap 'homebrew/python'
 tap 'homebrew/services'
 tap 'josegonzalez/php'
 tap 'rcmdnk/file'
