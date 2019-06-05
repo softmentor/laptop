@@ -24,7 +24,7 @@ brew 'graphviz'
 #brew 'node'
 
 # databases
-brew 'postgresql', args: ['no-python']
+brew 'postgresql'
 brew 'redis'
 cask 'razorsql'
 #brew 'rabbitmq'
@@ -34,7 +34,7 @@ cask 'razorsql'
 brew 'httpd24'
 
 ## apache thrift
-brew 'thrift', args: ['--without-haskell --without-php --without-erlang']
+#brew 'thrift', args: ['--without-haskell --without-php --without-erlang']
 
 #Mobile dev
 #cask genymotion
@@ -62,7 +62,7 @@ cask 'firefox'
 #cask 'lastpass'
 
 # password manager
-cask 'dashlane'
+#cask 'dashlane'
 
 # apps
 #communication

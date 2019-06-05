@@ -63,6 +63,9 @@ export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 export PATH="/usr/local/share/python/:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
+# Issue - https://github.com/robbyrussell/oh-my-zsh/issues/6835
+ZSH_DISABLE_COMPFIX=true
+
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
