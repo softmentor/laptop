@@ -180,6 +180,6 @@ brew 'kotlin'
 cask 'intellij-idea-ce'
 #Ultimate Edition
 #cask 'intellij-idea'
-cask 'eclipse-ide'
+#cask 'eclipse-ide'
 #cask 'android-studio'
 #cask 'webstorm'
