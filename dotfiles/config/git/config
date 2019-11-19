@@ -26,6 +26,7 @@
 	ui = true
 [diff]
     tool = default-difftool
+	renamelimit = -1
 [difftool "default-difftool"]
     cmd = code --wait --diff \"$LOCAL\" \"$REMOTE\"
 [mergetool "code"]
@@ -42,6 +43,10 @@
 	default = simple
 [web]
 	browser = google-chrome
+
+[inspector]
+	grading = true
+	format = html
 
 #[gitflow "prefix"]
 #	feature = feature-
