@@ -402,9 +402,10 @@ install_npm_global_pkg(){
     npm install -g types
     npm install -g ts-node
     fancy_echo ">>>>> Updating packages for gitbooks-cli ..."
-    #gitbooks for docs
+    # docs
     # http://toolchain.gitbook.com/setup.html
     npm install -g gitbook-cli
+    npm install -g gatsby-cli
     fancy_echo ">>>>> Updating packages for angular2 ..."
     #angular2 development
     npm install -g @angular/cli
