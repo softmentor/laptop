@@ -18,7 +18,7 @@ brew 'sbt'
 brew 'ktlint'
 
 #documentation
-cask 'gitbook-editor'
+cask 'gitbook'
 brew 'pandoc'
 
 brew 'graphviz'

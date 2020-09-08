@@ -5,7 +5,8 @@
 #==============================================================================
 # Tap all repos
 #==============================================================================
-tap 'caskroom/cask'
+#tap 'homebrew/cask-cask'
+tap 'homebrew/cask-fonts'
 tap 'homebrew/bundle'
 tap 'homebrew/services'
 tap 'rcmdnk/file'
@@ -156,7 +157,7 @@ cask 'iterm2'
 brew 'tmux'
 
 # editor
-brew 'vim', args: ['override-system-vi --with-python --with-ruby --with-perl']
+#brew 'vim', args: ['with-override-system-vi --with-python3']
 #brew 'macvim', args: ['--env-std --override-system-vim --with-python-config-dir=/usr/local/lib/python2.7/config']
 cask 'sublime-text'
 cask 'atom'
