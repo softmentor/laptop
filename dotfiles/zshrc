@@ -53,7 +53,7 @@ HIST_STAMPS="dd/mm/yyyy"
 plugins=(git bundler osx sudo archlinux tmux common-aliases colorize rake ruby pip python sbt scala golang brew docker encode64 gradle mvn jsontools npm node bower redis-cli sublime web-search)
 
 # User configuration
-export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/.bin:/usr/local/sbin:$PATH"
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
 # Add Rubies
@@ -160,3 +160,9 @@ export PATH="$PATH:$HOME/.rvm/bin"
 #==========================================================================
 # Conda PATH
 export PATH="$PATH:/usr/local/miniconda3/bin"
+
+# sqlite first in path to avoid conflicts with MacOS installed version
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/sqlite/lib"
+export CPPFLAGS="-I/usr/local/opt/sqlite/include"
+export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"

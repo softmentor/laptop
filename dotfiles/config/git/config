@@ -1,17 +1,17 @@
 [user]
 	name = Jiny Thattil
-	email = softmentor.git@gmail.com
-[includeIf "gitdir:~/Code/git/work-amz/"]
-    path = ~/Code/git/work-amz/.gitconfig
+	email = jiny.thattil@byjus.com
+[includeIf "gitdir/i:~/local-psl/code/"]
+    path = ~/local-psl/code/.gitconfig-psl
+[includeIf "gitdir/i:~/local-wrk/code/"]
+    path = ~/local-wrk/code/.gitconfig-wrk
+
 [credential]
 	helper = store
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
-[github]
-	user = softmentor
-	token = xxxxxxxxxxxxxx
 [core]
 #	excludesfile = /Users/user/.gitignore_global
 #	excludesfile = ~/.gitignore_global

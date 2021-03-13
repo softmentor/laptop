@@ -366,7 +366,7 @@
             },
             "Cursor Type": 2,
             "Blur": false,
-            "Normal Font": "InconsolataForPowerline 16",
+            "Normal Font": "InconsolataForPowerline 20",
             "Vertical Spacing": 1,
             "Disable Printing": false,
             "Ansi 7 Color": {
@@ -393,15 +393,17 @@
             "Transparency": 0,
             "Initial Text": "",
             "Background Color": {
-                "Green Component": 0.11783610284328461,
-                "Red Component": 0,
-                "Blue Component": 0.15170273184776306
+                "Red Component" : 0.0806884765625,
+                "Color Space" : "sRGB",
+                "Blue Component" : 0.12103271484375,
+                "Alpha Component" : 1,
+                "Green Component" : 0.099111050367355347
             },
             "Screen": -1,
             "Bound Hosts": [
 
             ],
-            "Non Ascii Font": "InconsolataForPowerline 16",
+            "Non Ascii Font": "InconsolataForPowerline 20",
             "Ansi 13 Color": {
                 "Green Component": 0.33896297216415405,
                 "Red Component": 0.34798634052276611,
