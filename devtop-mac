@@ -315,18 +315,7 @@ install_rvm(){
       # Verify RVM installation by running, which returns 'rvm is a function'
       type rvm | head -1
       fancy_echo "Verified rvm is a function ....."
-      #Installing few more rubies with rvm
-      rvm list
-      #rvm get stable
-      rvm install 1.9.3-p194
-      rvm install 2.0.0
-      rvm install 2.2.2
-      # for octopress
-      #rvm use 1.9.3-p194
-      rvm use 2.0.0
-      rvm use ruby-head
-      rvm use 2.2.2
-      rvm default ruby-head
+      install_rvm_ruby
       # To prevent warnings, trust the rvmrc file
       # Refer: https://rvm.io/workflow/projects
       # http://stackoverflow.com/questions/15708916/use-rvmrc-or-ruby-version-file-to-set-a-project-gemset-with-rvm
@@ -348,7 +337,18 @@ install_rvm(){
 }
 
 install_rvm_ruby(){
+  fancy_echo "Installing the rubies..."
+  #Installing few more rubies with rvm
+  rvm list
+  #rvm get stable
+  #rvm install 1.9.3-p194
+  #rvm install 2.0.0
+  #rvm install 2.2.2
   rvm install ruby-head
+  # for octopress
+  #rvm use 1.9.3-p194
+  #rvm use 2.0.0
+  #rvm use 2.2.2
   rvm use ruby-head
   rvm default ruby-head
 }
@@ -488,7 +488,10 @@ fancy_echo "================================================================="
 install_editorProfiles
 fancy_echo "Installing/Upgrading rvm ..."
 fancy_echo "================================================================="
-install_rvm
+#install_rvm
+fancy_echo "Installing/Upgrading rubies ..."
+fancy_echo "================================================================="
+#install_rvm_ruby
 fancy_echo "Installing/Upgrading ruby_gem ..."
 fancy_echo "================================================================="
 update_gem_packages

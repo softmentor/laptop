@@ -50,7 +50,7 @@ HIST_STAMPS="dd/mm/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler osx sudo archlinux tmux common-aliases colorize rake ruby pip python sbt scala golang brew docker encode64 gradle mvn jsontools npm node bower redis-cli sublime web-search)
+plugins=(git bundler macos sudo archlinux tmux common-aliases colorize rake ruby pip python sbt scala golang brew docker encode64 gradle mvn jsontools npm node bower redis-cli sublime web-search)
 
 # User configuration
 export PATH="$HOME/.bin:/usr/local/sbin:$PATH"
@@ -111,7 +111,7 @@ export JAVA_HOME=`/usr/libexec/java_home`
 
 # go environment variables
 # https://golang.org/cmd/go/#hdr-Environment_variables
-export CC=clang
+#export CC=clang
 # See 'go help gopath'
 export GOPATH=$HOME/code/golang
 export PATH=$PATH:$GOPATH/bin
@@ -162,7 +162,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:/usr/local/miniconda3/bin"
 
 # sqlite first in path to avoid conflicts with MacOS installed version
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/sqlite/lib"
-export CPPFLAGS="-I/usr/local/opt/sqlite/include"
-export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
+#export PATH="/usr/local/opt/sqlite/bin:$PATH"
+#export LDFLAGS="-L/usr/local/opt/sqlite/lib"
+#export CPPFLAGS="-I/usr/local/opt/sqlite/include"
+#export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
