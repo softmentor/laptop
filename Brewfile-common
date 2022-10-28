@@ -169,7 +169,7 @@ cask 'visual-studio-code'
 #languages
 cask 'java'
 #cask 'java7'
-brew 'python'
+brew 'python3'
 brew 'go'
 brew 'scala'
 brew 'kotlin'

@@ -62,6 +62,7 @@ export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # Add powerline bin to your path, refer http://powerline.readthedocs.org/
 export PATH="/usr/local/share/python/:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
+ln -s /usr/bin/python3 /usr/local/bin/python
 
 # Issue - https://github.com/robbyrussell/oh-my-zsh/issues/6835
 ZSH_DISABLE_COMPFIX=true
