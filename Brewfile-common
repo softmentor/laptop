@@ -167,8 +167,9 @@ cask 'visual-studio-code'
 #brew 'editorconfig'
 
 #languages
-cask 'java'
+#cask 'java'
 #cask 'java7'
+brew 'openjdk'
 brew 'python3'
 brew 'go'
 brew 'scala'
