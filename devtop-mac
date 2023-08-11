@@ -139,7 +139,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
       exit 1
     fi
   if [ ! -d "$HOME_BIN" ]; then
-    mkdir "$HOME_BIN"
+    mkdir -p "$HOME_BIN"
   fi
 
   if [ ! -f "$HOME_ZSHRC" ]; then
@@ -147,7 +147,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
   fi
 
   if [ ! -d "$HOME_GOLANG" ]; then
-    mkdir "$HOME_GOLANG"
+    mkdir -p "$HOME_GOLANG"
   fi
 
   case "$SHELL" in
@@ -247,7 +247,7 @@ install_homebrew(){
       'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
 
     # shellcheck disable=SC2016
-    append_to_file "$HOME_ZSHRC" 'export PATH="/usr/local/bin:$PATH"'
+    append_to_file "$HOME_ZSHRC" 'export PATH="/opt/homebrew/bin:$PATH"'
     sudo mkdir -p /opt/homebrew-cask
     sudo chmod -R 770 /opt/homebrew-cask
     brew tap homebrew/bundle

@@ -26,6 +26,11 @@ tap 'buo/cask-upgrade'
 #==============================================================================
 brew 'zsh'
 
+#==============================================================================
+# github CLI - https://cli.github.com/manual/installation
+#==============================================================================
+brew 'gh'
+
 #brew homebrew/dupes/grep
 #brew 'make'
 #brew 'zlib'
@@ -160,15 +165,13 @@ brew 'tmux'
 #brew 'vim', args: ['with-override-system-vi --with-python3']
 #brew 'macvim', args: ['--env-std --override-system-vim --with-python-config-dir=/usr/local/lib/python2.7/config']
 cask 'sublime-text'
-cask 'atom'
 cask 'visual-studio-code'
 
 #editor config
 #brew 'editorconfig'
 
 #languages
-cask 'java'
-#cask 'java7'
+cask 'openjdk'
 brew 'python3'
 brew 'go'
 brew 'scala'
