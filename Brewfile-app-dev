@@ -27,14 +27,14 @@ brew 'graphviz'
 #brew 'node'
 
 # databases
-brew 'postgresql'
+brew 'postgresql@14'
 brew 'redis'
 cask 'razorsql'
 #brew 'rabbitmq'
 #brew 'memcached'
 
 ## homebrew/apache
-brew 'httpd24'
+#brew 'httpd24'
 
 ## apache thrift
 #brew 'thrift', args: ['--without-haskell --without-php --without-erlang']
@@ -70,9 +70,8 @@ cask 'firefox'
 # apps
 #communication
 cask 'telegram'
-cask 'skype'
+#cask 'skype'
 cask 'slack'
-cask 'google-hangouts'
 
 #books
 cask 'kindle'
@@ -90,7 +89,7 @@ brew 'peco'
 #notes,mindmap
 cask 'evernote'
 cask 'xmind'
-cask 'anki'
+#cask 'anki'
 
 #diagrams
 cask 'drawio'
@@ -126,5 +125,5 @@ cask 'calibre'
 
 cask 'flux'
 
-cask 'amazon-music'
+#cask 'amazon-music'
 

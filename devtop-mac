@@ -40,7 +40,7 @@ defaults write com.apple.finder ShowStatusBar -bool true # Show status bar
 
 # Enable inline attachments in Mail.app
 # http://www.macinstruct.com/node/502
-defaults write com.apple.mail DisableInlineAttachmentViewing -bool NO
+#defaults write com.apple.mail DisableInlineAttachmentViewing -bool NO
 
 # Save screenshots to the desktop
 [[ -d $HOME/Screenshots/ ]] || mkdir $HOME/Screenshots/
