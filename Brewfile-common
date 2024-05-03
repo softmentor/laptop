@@ -12,7 +12,7 @@ tap 'homebrew/services'
 tap 'rcmdnk/file'
 #tap 'telemachus/anytap'
 tap 'thoughtbot/formulae'
-tap 'youtux/livecheck'
+#tap 'youtux/livecheck'
 tap 'buo/cask-upgrade'
 
 #==============================================================================
