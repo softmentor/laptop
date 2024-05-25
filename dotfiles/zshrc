@@ -168,3 +168,9 @@ export PATH="$PATH:/usr/local/miniconda3/bin"
 #export CPPFLAGS="-I/usr/local/opt/sqlite/include"
 #export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+
+#==========================================================================
+# D2lang diagrams env settings
+# https://d2lang.com/tour/themes
+#D2_THEME=7
