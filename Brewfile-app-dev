@@ -18,7 +18,7 @@ brew 'sbt'
 brew 'ktlint'
 
 #documentation
-cask 'gitbook'
+#cask 'gitbook'
 brew 'pandoc'
 
 brew 'graphviz'
@@ -27,14 +27,14 @@ brew 'graphviz'
 #brew 'node'
 
 # databases
-brew 'postgresql'
+brew 'postgresql@16'
 brew 'redis'
 cask 'razorsql'
 #brew 'rabbitmq'
 #brew 'memcached'
 
 ## homebrew/apache
-brew 'httpd24'
+#brew 'httpd24'
 
 ## apache thrift
 #brew 'thrift', args: ['--without-haskell --without-php --without-erlang']
@@ -60,7 +60,7 @@ cask 'miniconda'
 
 # browsers
 cask 'google-chrome'
-cask 'opera'
+#cask 'opera'
 cask 'firefox'
 #cask 'lastpass'
 
@@ -70,9 +70,8 @@ cask 'firefox'
 # apps
 #communication
 cask 'telegram'
-cask 'skype'
+#cask 'skype'
 cask 'slack'
-cask 'google-hangouts'
 
 #books
 cask 'kindle'
@@ -90,7 +89,7 @@ brew 'peco'
 #notes,mindmap
 cask 'evernote'
 cask 'xmind'
-cask 'anki'
+#cask 'anki'
 
 #diagrams
 cask 'drawio'
@@ -100,7 +99,7 @@ cask 'spotify'
 
 # drives
 #cask 'dropbox'
-cask 'google-backup-and-sync'
+cask 'google-drive'
 #cask 'skydrive' #onedrive
 
 #productivity
@@ -115,7 +114,7 @@ cask 'google-backup-and-sync'
 #cask 'rdm'
 #cask 'vlc'
 #cask 'adium'
-cask 'calibre'
+#cask 'calibre'
 #cask 'crashplan'
 #cask 'flux'
 #cask 'skitch'
@@ -124,7 +123,7 @@ cask 'calibre'
 #cask 'truecrypt71a'
 #cask 'cyberduck'
 
-cask 'flux'
+#cask 'flux'
 
-cask 'amazon-music'
+#cask 'amazon-music'
 
