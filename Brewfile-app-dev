@@ -29,7 +29,7 @@ brew 'graphviz'
 # databases
 brew 'postgresql@16'
 brew 'redis'
-cask 'razorsql'
+#cask 'razorsql'
 #brew 'rabbitmq'
 #brew 'memcached'
 
@@ -48,7 +48,7 @@ cask 'charles'
 brew 'wrk'
 
 # docker
-cask 'docker'
+#cask 'docker'
 
 
 # MachineLearning, AI

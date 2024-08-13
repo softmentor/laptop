@@ -36,7 +36,7 @@ DRY_RUN=''
 SOURCE=$HOME/
 HOST_NAME=`hostname`
 MC_NAME=`echo ${HOST_NAME//./_}`
-TARGET="/Volumes/work-bck-up/$MC_NAME/$USER/"
+TARGET="/Volumes/One Touch/work-bck-up/$MC_NAME/$USER/"
 EXCLUDES="$HOME/laptop/exclude-sync-list.txt"
 GLOBAL_FILTERS="$HOME/.rsync/global-filters"
 # For debug purpose only.

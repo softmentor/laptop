@@ -136,7 +136,7 @@ cask 'font-fira-code'
 
 # utils
 brew 'ack'
-brew 'the_silver_searcher'
+#brew 'the_silver_searcher'
 #brew 'fasd'
 brew 'wget'
 brew 'curl'
@@ -150,6 +150,9 @@ brew 'boost'
 brew 'pkg-config'
 brew 'freetype'
 brew 'gnupg'
+brew 'jq'
+
+cask 'google-cloud-sdk'
 
 # Network tools
 #brew 'dns2tcp'
@@ -166,6 +169,7 @@ brew 'tmux'
 #brew 'macvim', args: ['--env-std --override-system-vim --with-python-config-dir=/usr/local/lib/python2.7/config']
 cask 'sublime-text'
 cask 'visual-studio-code'
+cask 'zed'
 
 #editor config
 #brew 'editorconfig'
@@ -174,6 +178,7 @@ cask 'visual-studio-code'
 brew 'openjdk'
 brew 'python3'
 brew 'go'
+brew 'rust'
 brew 'scala'
 brew 'kotlin'
 #brew 'qt'
@@ -186,3 +191,7 @@ cask 'intellij-idea-ce'
 #cask 'eclipse-ide'
 #cask 'android-studio'
 #cask 'webstorm'
+
+
+# Documentation
+brew 'mdbook'
