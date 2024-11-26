@@ -143,7 +143,7 @@ brew 'curl'
 cask 'ngrok'
 brew 'awscli'
 brew 'terminal-notifier'
-brew 'htop-osx'
+brew 'htop'
 brew 'imagemagick'
 brew 'rsync'
 brew 'boost'
@@ -159,6 +159,9 @@ cask 'google-cloud-sdk'
 #brew 'knock'
 #brew 'rename'
 #brew 'webkit2png'
+
+# Compress, zip/unzip
+brew 'p7zip'
 
 # terminal
 cask 'iterm2'
@@ -179,9 +182,12 @@ brew 'openjdk'
 brew 'python3'
 brew 'go'
 brew 'rust'
+brew 'rustup'
 brew 'scala'
 brew 'kotlin'
 #brew 'qt'
+# https://www.modular.com/mojo
+# brew 'modularml/packages/modular'
 
 # IDEs
 #Community Free Edition

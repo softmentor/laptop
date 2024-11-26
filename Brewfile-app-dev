@@ -13,6 +13,7 @@ brew 'mas'
 brew 'maven'
 brew 'gradle'
 brew 'sbt'
+brew 'go-task'
 
 # lint tools
 brew 'ktlint'
@@ -49,6 +50,10 @@ brew 'wrk'
 
 # docker
 #cask 'docker'
+
+# kubernetes k8s
+brew 'kubectl'
+brew 'minikube'
 
 
 # MachineLearning, AI

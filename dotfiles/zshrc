@@ -94,6 +94,7 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias draw.io='/Applications/draw.io.app/Contents/MacOS/draw.io'
 
 #==========================================================================
 # Customization
@@ -169,11 +170,25 @@ export PATH="$PATH:/usr/local/miniconda3/bin"
 #export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
+# Rust Cargo (package manager) PATH
+export PATH="$PATH:/usr/local/bin/cargo"
+# Add all the cargo packages, preprocessors to the PATH
+export PATH="$PATH:$HOME/.cargo/bin"
+
 
 #==========================================================================
 # D2lang diagrams env settings
 # https://d2lang.com/tour/themes
 #D2_THEME=7
+export PATH="$PATH:/usr/local/bin/d2"
+
+# Export drawio app to be invoked from cli
+export PATH="$PATH:/Applications/draw.io.app/Contents/MacOS/draw.io"
+
+# ================================================
+# Add npm global packages into the path
+# ================================================
+
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -190,3 +205,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export PATH=$PATH:"/usr/local/share/npm/bin"
+export PATH=$PATH:$(npm get prefix -g)/bin

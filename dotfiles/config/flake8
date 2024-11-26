@@ -1,0 +1,38 @@
+[flake8]
+# Set the maximum line length to 88 characters to be compatible with Black
+max-line-length = 88
+
+# Ignore specific error codes
+# E203: whitespace before ':', W503: line break before binary operator
+# Both are compatible with Black's default formatting
+ignore = E203, W503
+
+# Exclude certain directories globally
+# You may adjust this list based on your common directory structure
+exclude = 
+    .venv/,
+    __pycache__/,
+    build/,
+    dist/,
+    *.egg-info/,
+    .git/,
+    .tox/
+
+# Set the maximum allowed McCabe complexity to 10
+max-complexity = 10
+
+# Enable per-file-ignores for commonly problematic files
+# For example, migrations files in Django projects
+per-file-ignores = 
+    */migrations/*.py: E501
+
+# Show the source code of each warning or error (useful for debugging)
+show-source = True
+
+# Set the format of the output to be more informative
+format = %(path)s:%(row)d:%(col)d: %(code)s %(text)s
+
+# Enable Flake8 extensions (optional, depending on your needs)
+# You can add plugins like flake8-bugbear, flake8-comprehensions, etc.
+# Extend-ignore is used to disable codes even from plugins
+extend-ignore = B305

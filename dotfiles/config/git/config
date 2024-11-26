@@ -1,13 +1,40 @@
+# default user if nothing is specified or resolved
 [user]
-	name = Jiny Thattil
-	email = jiny.thattil@byjus.com
+	name = softmentor
+	email = softmentor.git@gmail.com
+
+[credential]
+	helper = osxkeychain
+    useHttpPath = false
+	credentialStore = keychain
+	provider = github
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+
+[credential "psl"]
+    username=softmentor
+    useHttpPath = false
+    helper = manager
+	credentialStore = keychain
+	provider = github
+
+[credential "work"]
+    username=jiny-tnl
+    useHttpPath = false
+    helper = manager
+	credentialStore = keychain
+	provider = github
+
 [includeIf "gitdir/i:~/local-psl/code/"]
     path = ~/local-psl/code/.gitconfig-psl
 [includeIf "gitdir/i:~/local-wrk/code/"]
     path = ~/local-wrk/code/.gitconfig-wrk
 
-[credential]
-	helper = store
+# [credential]
+# 	helper = store
+# 	helper = /usr/local/share/gcm-core/git-credential-manager
+# [credential "https://github.com/Epic"]
+# 	username = jiny-getepic
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
@@ -17,9 +44,9 @@
 #	excludesfile = ~/.gitignore_global
 	#following core.pager value uses less, which prints to stdout,
 	#also has pager functionality (if required), enabling scrolling up and down
-	# quits if the diff fits on the first screen (-F), 
-	#outputs raw control characters (-R), 
-	#chops long lines rather than wrapping (-S), and 
+	# quits if the diff fits on the first screen (-F),
+	#outputs raw control characters (-R),
+	#chops long lines rather than wrapping (-S), and
 	#does not use termcap init/deinit strings (-X)
 	pager = less -FRSX
 [color]
@@ -206,3 +233,7 @@
 	human = name-rev --name-only --refs=refs/heads/*
 	serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
 	snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+# [credential "https://dev.azure.com"]
+# 	useHttpPath = true
+[credential "https://dev.azure.com"]
+	useHttpPath = true
