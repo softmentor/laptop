@@ -438,7 +438,7 @@ update_gem_packages(){
   # If you have an older version of RubyGems installed, then you can still do it in two steps:
   # Steps: brew uninstall ruby
   # sudo gem update —system
-  gem update —system
+  # gem update —-system
   gem update
 }
 

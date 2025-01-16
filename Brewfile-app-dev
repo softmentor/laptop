@@ -18,6 +18,10 @@ brew 'go-task'
 # lint tools
 brew 'ktlint'
 
+# package managers
+brew 'uv'
+brew 'ruff'
+
 #documentation
 #cask 'gitbook'
 brew 'pandoc'
