@@ -25,6 +25,8 @@ brew 'ruff'
 #documentation
 #cask 'gitbook'
 brew 'pandoc'
+# Research references: https://www.zotero.org/
+cask 'zotero'
 
 brew 'graphviz'
 

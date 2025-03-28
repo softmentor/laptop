@@ -528,10 +528,10 @@ brew cleanup
 # use the Brewfile which has all required tools
 fancy_echo "Installing/Upgrading Brewfile-common ..."
 fancy_echo "================================================================="
-brew bundle --file=Brewfile-common --no-lock
+brew bundle --file=Brewfile-common
 fancy_echo "Installing/Upgrading Brewfile-app-dev ..."
 fancy_echo "================================================================="
-brew bundle --file=Brewfile-app-dev --no-lock
+brew bundle --file=Brewfile-app-dev
 
 # update all the casks using https://github.com/buo/homebrew-cask-upgrade
 brew cu --yes
